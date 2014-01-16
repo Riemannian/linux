@@ -57,6 +57,10 @@ sudo apt-get install python-dev
 sudo apt-get install python-numpy
 sudo apt-get install python-magic
 sudo apt-get install python-matplotlib
+sudo apt-get isntall python-scrapy
+
+
+Cuda-convnet (other):
 sudo apt-get install libatlas-base-dev //for cuda-convnet
 sudo apt-get install subversion        //for cuda-convnet
 

@@ -52,6 +52,11 @@ else
 fi
 
 
+Gitlab:
+...
+
+
+
 Python libraries:
 sudo apt-get install python-dev
 sudo apt-get install python-numpy

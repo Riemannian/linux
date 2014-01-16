@@ -1,3 +1,5 @@
+Why not make a bash script out of this?
+
 First of all:
 sudo apt-get update
 
@@ -56,13 +58,25 @@ Gitlab:
 ...
 
 
+Aptitude (used for installing ubuntu packages):
+sudo apt-get install aptitude
+
 
 Python libraries:
 sudo apt-get install python-dev
 sudo apt-get install python-numpy
 sudo apt-get install python-magic
 sudo apt-get install python-matplotlib
-sudo apt-get isntall python-scrapy
+
+
+Python scrapy:
+sudo emacs /etc/apt/sources.list
+lsb_release -cs
+that comand will give you your distro.
+and then add the following to the file, with relevant DISTRO:
+deb http://archive.scrapy.org/ubuntu DISTRO main
+sudo aptitude update
+sudo apt-get install scrapy-0.18
 
 
 Cuda-convnet (other):

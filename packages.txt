@@ -10,6 +10,11 @@ lsb_release -a
 it will say you have trusty
 
 
+Git:
+sudo apt-get install git
+git config --global user.email "adalyac@gmail.com"
+
+
 Emacs:
 sudo apt-add-repository ppa:cassou/emacs
 sudo apt-get update
@@ -21,11 +26,6 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome*; sudo apt-get -f install
 
 
-Git:
-sudo apt-get install git
-git config --global user.email "adalyac@gmail.com"
-
-
 Hide Unity taskbar:
 via GUI:
 click top-right-hand-corner button
@@ -34,6 +34,22 @@ click Appearance
 click Behaviour
 Auto-hide the Launcher: ON
 make it slightly more sensitive than default
+
+
+Make only current directory display on terminal:
+open ~/.bashrc
+replace:
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+with:
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
+fi
 
 
 Python libraries:

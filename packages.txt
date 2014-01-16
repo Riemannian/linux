@@ -1,0 +1,48 @@
+First of all:
+sudo apt-get update
+
+
+My version of ubuntu:
+Ubuntu 14.04 Trusty Tahr
+yes, in system settings details it says 13.10
+but with
+lsb_release -a
+it will say you have trusty
+
+
+Emacs:
+sudo apt-add-repository ppa:cassou/emacs
+sudo apt-get update
+sudo apt-get install emacs-snapshot
+
+
+Google chrome:
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome*; sudo apt-get -f install
+
+
+Git:
+sudo apt-get install git
+git config --global user.email "adalyac@gmail.com"
+
+
+Hide Unity taskbar:
+via GUI:
+click top-right-hand-corner button
+click System Settings
+click Appearance
+click Behaviour
+Auto-hide the Launcher: ON
+make it slightly more sensitive than default
+
+
+Python libraries:
+sudo apt-get install python-dev
+sudo apt-get install python-numpy
+sudo apt-get install python-magic
+sudo apt-get install python-matplotlib
+sudo apt-get install libatlas-base-dev //for cuda-convnet
+sudo apt-get install subversion        //for cuda-convnet
+
+
+

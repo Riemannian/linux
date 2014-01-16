@@ -1,0 +1,15 @@
+PPA installation:
+sudo add-apt ppa:name_of_ppa
+sudo apt-get update
+sudo apt-get install program_name
+ppa means personal package archive
+
+
+Uninstall:
+sudo apt-get --purge remove program_name
+
+
+Clean space:
+sudo apt-get autoremove
+
+

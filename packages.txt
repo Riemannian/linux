@@ -54,6 +54,14 @@ else
 fi
 
 
+Disable bluetooth on startup:
+sudoedit /etc/rc.local
+before line with 'exit 0', add:
+rfkill block bluetooth
+C-X to exit
+Y to save before exit
+
+
 Gitlab:
 ...
 
@@ -90,6 +98,4 @@ sudo apt-get install scrapy-0.18
 Cuda-convnet (other):
 sudo apt-get install libatlas-base-dev //for cuda-convnet
 sudo apt-get install subversion        //for cuda-convnet
-
-
 

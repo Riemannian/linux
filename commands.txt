@@ -2,6 +2,7 @@ What is my distro:
 lsb_release -cs
 trusty
 
+
 PPA installation:
 sudo add-apt ppa:name_of_ppa
 sudo apt-get update
@@ -22,5 +23,14 @@ okular file_name
 
 
 Navigate on vim:
+
+
+What's my version of scrapy:
+scrapy version -v
+
+
+How much RAM am I using:
+free -m
+
 
 

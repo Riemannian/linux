@@ -17,6 +17,10 @@ Clean space:
 sudo apt-get autoremove
 
 
+Okular:
+okular file_name
+
+
 Navigate on vim:
 
 

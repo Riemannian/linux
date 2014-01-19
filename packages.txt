@@ -92,10 +92,19 @@ that comand will give you your distro.
 and then add the following to the file, with relevant DISTRO:
 deb http://archive.scrapy.org/ubuntu DISTRO main
 sudo aptitude update
-sudo apt-get install scrapy-0.18
+sudo apt-get install scrapy-0.22
 
 
 Cuda-convnet (other):
 sudo apt-get install libatlas-base-dev //for cuda-convnet
 sudo apt-get install subversion        //for cuda-convnet
+
+
+Hipchat (Group Project messaging):
+sudo su
+echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
+  /etc/apt/sources.list.d/atlassian-hipchat.list
+wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+apt-get update
+apt-get install hipchat
 

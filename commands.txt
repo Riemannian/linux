@@ -1,3 +1,29 @@
+Locate file:
+locate file_name_substring
+notice you need no wild cards, no inverted commas to locate file
+containing substring.
+to locate file with exactly file_name as filename:
+locate 'file_name'
+to locate file ending with file_name_end:
+locate '*file_name_end'
+to locate file starting with file_name_neg:
+locate 'file_name_beg*'
+
+
+Locate file with find:
+find -name text
+
+
+Locate text within files:
+to look in whole filesystem:
+grep "text" /*
+to look in a specific directory:
+grep "text" /path/to/directory/*
+to look in a specific directory and all its subdirectories:
+grep "text" -r /path/to/directory/
+notice no wildcard is needed in this case
+
+
 What is my distro:
 lsb_release -cs
 trusty

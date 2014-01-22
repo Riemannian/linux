@@ -33,4 +33,7 @@ How much RAM am I using:
 free -m
 
 
-
+Check if a library is installed
+locate library_name
+or, for more info
+dpkg -s library_name

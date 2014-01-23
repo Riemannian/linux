@@ -63,3 +63,42 @@ Check if a library is installed
 locate library_name
 or, for more info
 dpkg -s library_name
+
+
+Using lynx browser:
+
+MOVEMENT:
+   Down arrow     - Highlight next topic
+   Up arrow       - Highlight previous topic
+   Right arrow,   - Jump to highlighted topic
+   Return, Enter  - Follow selected link
+   Left arrow     - Return to previous topic
+
+SCROLLING: 
+   CTRL-A         - Go to first page of the current document (Home)
+   CTRL-E         - Go to last page of the current document (End)
+   CTRL-B         - Scroll up to previous page (Page-Up)
+   CTRL-F         - Scroll down to next page (Page-Down)
+
+DIRED:
+   d              - Download selected file
+   f              - Show a full menu of options for current file
+
+OTHER:       
+   ? (or h)       - Help (this screen)
+   d              - Download the current link
+   g              - Goto a user specified URL or file
+   p              - Print to a file, mail, printers, or other
+   q              - Quit (Capital 'Q' for quick quit)
+   /              - Search for a string within the current document
+   V              - Go to the Visited Links Page
+   z              - Cancel transfer in progress
+   [backspace]    - Go to the History Page
+   =  - Show info about current document, URL and link
+   CTRL-R         - Reload current file and refresh the screen
+   CTRL-L         - Refresh the screen
+   CTRL-U         - Inside text input line or field,
+                    erase input line (more input line commands)
+   CTRL-G         - Cancel input or transfer
+
+

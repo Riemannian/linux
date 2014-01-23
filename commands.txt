@@ -8,7 +8,7 @@ to locate file ending with file_name_end:
 locate '*file_name_end'
 to locate file starting with file_name_neg:
 locate 'file_name_beg*'
-
+ 
 
 Locate file with find:
 find -name text

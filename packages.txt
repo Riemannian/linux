@@ -55,11 +55,9 @@ fi
 
 
 Disable bluetooth on startup:
-sudoedit /etc/rc.local
-before line with 'exit 0', add:
-rfkill block bluetooth
-C-X to exit
-Y to save before exit
+didn't work: sudoedit /etc/rc.local, rfkill block bluetooth
+sudo emacs /etc/rc.local
+add: blacklist btusb
 
 
 Gitlab:

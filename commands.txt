@@ -24,6 +24,15 @@ grep "text" -r /path/to/directory/
 notice no wildcard is needed in this case
 
 
+Extract archives:
+to unpack tar.gz aka .tgz:
+tar zxvf archive_name.tgz
+to unpack tar.gz and place files in another folder:
+tar zxvf archive_name.tgz -C /path/to/directory
+
+Unzip:
+
+
 What is my distro:
 lsb_release -cs
 trusty

@@ -11,7 +11,10 @@ locate 'file_name_beg*'
  
 
 Locate file with find:
-find -name text
+find -name "text"
+to separate stdout from stderr (stdout to file):
+find -name "text" > temp.txt
+
 
 
 Locate text within files:

@@ -16,9 +16,6 @@ to separate stdout from stderr (stdout to file):
 find -name "text" > temp.txt
 
 
-copy recursively (!!!):
-cp -R target destination_directory
-
 
 Locate text within files:
 to look in whole filesystem:
@@ -66,7 +63,7 @@ okular file_name
 Navigate on vim:
 
 
-What's my version of scrapy:
+Whats my version of scrapy:
 scrapy version -v
 
 

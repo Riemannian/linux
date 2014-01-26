@@ -16,9 +16,6 @@ to separate stdout from stderr (stdout to file):
 find -name "text" > temp.txt
 
 
-copy recursively (!!!):
-cp -R target destination_directory
-
 
 Locate text within files:
 to look in whole filesystem:

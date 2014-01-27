@@ -16,8 +16,12 @@ to separate stdout from stderr (stdout to file):
 find -name "text" > temp.txt
 
 
-copy recursively (!!!):
-cp -R target destination_directory
+force copy recursively:
+cp -rf target destination_directory
+if this doesn't work, then your cp is aliased
+move to another environment (bash, ksh, tcsh) and try again
+hopefully cp won't be aliased everywhere
+
 
 
 Locate text within files:

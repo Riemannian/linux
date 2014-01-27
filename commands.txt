@@ -80,6 +80,10 @@ or, for more info
 dpkg -s library_name
 
 
+Launch utorrent:
+http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
+
+
 Using lynx browser:
 
 MOVEMENT:

@@ -63,6 +63,12 @@ Clean space:
 sudo apt-get autoremove
 
 
+Change mode of a file:
+(ie change the rwx permissions) 
+to give full permission:
+chmod 777 filename
+
+
 Okular:
 okular file_name
 

@@ -39,6 +39,10 @@ tar zxvf archive_name.tgz -C /path/to/directory
 Unzip:
 
 
+Disable screensaver:
+gsettings set org.gnome.settings-daemon.plugins.power active false
+
+
 What is my distro:
 lsb_release -cs
 trusty

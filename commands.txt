@@ -1,3 +1,8 @@
+Where are package configuration files stored:
+(stored automatically during setup)
+/usr/local/lib
+
+
 Locate file:
 locate file_name_substring
 notice you need no wild cards, no inverted commas to locate file
@@ -16,7 +21,11 @@ to separate stdout from stderr (stdout to file):
 find -name "text" > temp.txt
 
 
-force copy recursively:
+Which packages include a specific file:
+apt-file search filename
+
+
+Force copy recursively:
 cp -rf target destination_directory
 if this doesn't work, then your cp is aliased
 move to another environment (bash, ksh, tcsh) and try again
@@ -90,12 +99,20 @@ or, for more info
 dpkg -s library_name
 
 
+What does apt stand for:
+advanced packaging tool
+
+
+What does ppa stand for:
+personal package archive
+
+
 Launch utorrent:
 http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
 
 
 Launch gummi:
-
+gummi filename.tex
 
 Lynx browser:
 MOVEMENT:

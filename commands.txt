@@ -21,17 +21,6 @@ to separate stdout from stderr (stdout to file):
 find -name "text" > temp.txt
 
 
-Which packages include a specific file:
-apt-file search filename
-
-
-Force copy recursively:
-cp -rf target destination_directory
-if this doesn't work, then your cp is aliased
-move to another environment (bash, ksh, tcsh) and try again
-hopefully cp won't be aliased everywhere
-
-
 Locate text within files:
 to look in whole filesystem:
 grep "text" /*
@@ -40,6 +29,13 @@ grep "text" /path/to/directory/*
 to look in a specific directory and all its subdirectories:
 grep "text" -r /path/to/directory/
 notice no wildcard is needed in this case
+
+
+Force copy recursively:
+cp -rf target destination_directory
+if this doesn't work, then your cp is aliased
+move to another environment (bash, ksh, tcsh) and try again
+hopefully cp won't be aliased everywhere
 
 
 Extract archives:
@@ -55,13 +51,6 @@ unzip file.zip -d destination_folder
 What is my distro:
 lsb_release -cs
 trusty
-
-
-PPA installation:
-sudo add-apt ppa:name_of_ppa
-sudo apt-get update
-sudo apt-get install program_name
-ppa means personal package archive
 
 
 Uninstall:
@@ -93,10 +82,21 @@ How much RAM am I using:
 free -m
 
 
-Check if a library is installed
+PPA installation:
+sudo add-apt ppa:name_of_ppa
+sudo apt-get update
+sudo apt-get install program_name
+ppa means personal package archive
+
+
+Check if a library/package is installed:
 locate library_name
 or, for more info
 dpkg -s library_name
+
+
+Which packages include a specific file:
+apt-file search filename
 
 
 What does apt stand for:

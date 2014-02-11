@@ -1,3 +1,8 @@
+Where are package configuration files stored:
+(stored automatically during setup)
+/usr/local/lib
+
+
 Locate file:
 locate file_name_substring
 notice you need no wild cards, no inverted commas to locate file
@@ -16,13 +21,6 @@ to separate stdout from stderr (stdout to file):
 find -name "text" > temp.txt
 
 
-force copy recursively:
-cp -rf target destination_directory
-if this doesn't work, then your cp is aliased
-move to another environment (bash, ksh, tcsh) and try again
-hopefully cp won't be aliased everywhere
-
-
 Locate text within files:
 to look in whole filesystem:
 grep "text" /*
@@ -31,6 +29,13 @@ grep "text" /path/to/directory/*
 to look in a specific directory and all its subdirectories:
 grep "text" -r /path/to/directory/
 notice no wildcard is needed in this case
+
+
+Force copy recursively:
+cp -rf target destination_directory
+if this doesn't work, then your cp is aliased
+move to another environment (bash, ksh, tcsh) and try again
+hopefully cp won't be aliased everywhere
 
 
 Extract archives:
@@ -57,13 +62,6 @@ gsettings set org.gnome.settings-daemon.plugins.power active false
 What is my distro:
 lsb_release -cs
 trusty
-
-
-PPA installation:
-sudo add-apt ppa:name_of_ppa
-sudo apt-get update
-sudo apt-get install program_name
-ppa means personal package archive
 
 
 Uninstall:
@@ -95,10 +93,29 @@ How much RAM am I using:
 free -m
 
 
-Check if a library is installed
+PPA installation:
+sudo add-apt ppa:name_of_ppa
+sudo apt-get update
+sudo apt-get install program_name
+ppa means personal package archive
+
+
+Check if a library/package is installed:
 locate library_name
 or, for more info
 dpkg -s library_name
+
+
+Which packages include a specific file:
+apt-file search filename
+
+
+What does apt stand for:
+advanced packaging tool
+
+
+What does ppa stand for:
+personal package archive
 
 
 Launch utorrent:
@@ -106,7 +123,7 @@ http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
 
 
 Launch gummi:
-
+gummi filename.tex
 
 Lynx browser:
 MOVEMENT:

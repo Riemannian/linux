@@ -99,6 +99,11 @@ Which packages include a specific file:
 apt-file search filename
 
 
+Install any python library:
+inside the uncompressed directory for the lib, enter:
+sudo python setup.py install
+
+
 What does apt stand for:
 advanced packaging tool
 
@@ -113,6 +118,16 @@ http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
 
 Launch gummi:
 gummi filename.tex
+
+
+Add plugin to emacs:
+1) place myplugin.el in ~/.emacs.d/
+2) add to ~/.emacs:
+(add-to-list 'load-path "~/.emacs.d/")
+(load "myplugin.el")
+2) or if that doesn't work, instead:
+(require 'myplugin)
+
 
 Lynx browser:
 MOVEMENT:

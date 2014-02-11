@@ -68,6 +68,10 @@ List processes:
 ps aux
 
 
+Keep process running:
+http://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session
+
+
 What is my distro:
 lsb_release -cs
 trusty

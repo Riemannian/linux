@@ -1,3 +1,19 @@
+Scroll/navigate through output!!
+<your_command> | less
+navigation keys when using less:
+space_bar       next page
+b               prev page
+j               next line
+k               prev line
+<               first line
+>               last line
+/<text>         forward search for text
+?<text>		backward search for text
+n               next search match
+N               prev search match
+q               quit
+
+
 Where are package configuration files stored:
 (stored automatically during setup)
 /usr/local/lib
@@ -46,6 +62,10 @@ tar zxvf archive_name.tgz -C /path/to/directory
 
 Unzip:
 unzip file.zip -d destination_folder
+
+
+List processes:
+ps aux
 
 
 What is my distro:

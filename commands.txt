@@ -43,6 +43,13 @@ Unzip:
 unzip file.zip -d destination_folder
 
 
+List running processes:
+ps aux
+all user processes:
+ps
+
+
+
 Disable screensaver:
 gsettings set org.gnome.settings-daemon.plugins.power active false
 

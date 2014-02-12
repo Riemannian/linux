@@ -46,6 +46,9 @@ to look in a specific directory and all its subdirectories:
 grep "text" -r /path/to/directory/
 notice no wildcard is needed in this case
 
+Locate multiple words within files:
+grep "word1\|word2\|word3" /path/to/files
+
 
 Force copy recursively:
 cp -rf target destination_directory

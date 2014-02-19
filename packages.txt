@@ -106,3 +106,7 @@ wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
 apt-get update
 apt-get install hipchat
 
+
+# dconf editor to change keyboard mapping
+sudo apt-get install dconf-tools
+

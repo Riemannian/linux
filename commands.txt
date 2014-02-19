@@ -58,10 +58,14 @@ hopefully cp won't be aliased everywhere
 
 
 Extract archives:
-to unpack tar.gz aka .tgz:
+  to unpack tar.gz aka .tgz:
 tar zxvf archive_name.tgz
-to unpack tar.gz and place files in another folder:
+  to unpack tar.gz and place files in another folder:
 tar zxvf archive_name.tgz -C /path/to/directory
+  to unpack filename from arch.tar, create and store in dir:
+tar -xf arch.tar dir/filename
+
+  
 
 Unzip:
 unzip file.zip -d destination_folder

@@ -1,4 +1,9 @@
-Scroll/navigate through output!!
+
+copy a file from one computer to another via a network:
+scp <path/filename> ad6813@graphic02.doc.ic.ac.uk:/path/to/destination
+
+
+Scroll/navigate through output:
 <your_command> | less
 navigation keys when using less:
 space_bar       next page

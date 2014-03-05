@@ -76,11 +76,12 @@ Unzip:
 unzip file.zip -d destination_folder
 
 
-<<<<<<< HEAD
 List running processes:
 ps aux
 all user processes:
 ps
+all processes containing substrings:
+ps auwxx | grep <substring of top attribute> | grep <other substring of top attribute>
 
 
 Keep process running:
@@ -102,6 +103,15 @@ tmux
 <hotkey: Ctrl-b d>              //detached shell
 tmux ls                         //list all detached shells
 tmux a -t <tmux number>         //moves to specified detached shell
+
+
+Run process in background without interruption even if logout:
+nohup
+example:
+nohup rlwrap sicstus -l my_wol.pl < input.txt > output.txt 2>&1 &
+//run sicstus with my_wol.pl consulted and execute commands in
+//input.txt and redirect stderr/stdout to output.txt and place process
+//in background
 
 
 What is my distro:
@@ -172,6 +182,12 @@ What does ppa stand for:
 personal package archive
 
 
+view processor activity:
+top
+htop //looks nicer/cooler, with graphical CPU usage for each core
+
+
+
 Launch utorrent:
 http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
 
@@ -223,5 +239,4 @@ OTHER:
    CTRL-U         - Inside text input line or field,
                     erase input line (more input line commands)
    CTRL-G         - Cancel input or transfer
-
 

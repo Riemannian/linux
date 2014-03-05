@@ -92,9 +92,11 @@ Disable screensaver:
 gsettings set org.gnome.settings-daemon.plugins.power active false
 
 
-Run parallel processes:
-//this won't necessarily run parallel processes, 
-//but it will achieve concurrency
+Run process in background without interruption even if logout, take 1:
+//btw, concurrent processes can simply be obtained with '&'
+//parallel computing requires root access because OS usually manages that
+//tmux just keeps a whole shell running even if you log out, until machine 
+//reboots. so having multiple tmuxes doesn't increases parallelism I think!
 tmux                            //starts a detached shell
 <command that launches process> //starts a process on that shell
 <hotkey: Ctrl-b d>              //returns from detached shell to home shell
@@ -105,7 +107,7 @@ tmux ls                         //list all detached shells
 tmux a -t <tmux number>         //moves to specified detached shell
 
 
-Run process in background without interruption even if logout:
+Run process in background without interruption even if logout, take 2:
 nohup
 example:
 nohup rlwrap sicstus -l my_wol.pl < input.txt > output.txt 2>&1 &

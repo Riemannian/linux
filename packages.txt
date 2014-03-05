@@ -98,6 +98,11 @@ sudo apt-get install libatlas-base-dev //for cuda-convnet
 sudo apt-get install subversion        //for cuda-convnet
 
 
+# Postgres (open source SQL sicstus-like querying system):
+sudo apt-get install postgresql-client-common
+sudo apt-get install postgres-xc-client
+
+
 Hipchat (Group Project messaging):
 sudo su
 echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
@@ -105,4 +110,10 @@ echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
 wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
 apt-get update
 apt-get install hipchat
+
+
+# add greek/french key mappings
+xmodmap -pke > extrakeydefs.lst
+cp -f mykeydefs.lst extrakeydefs.lst
+xmodmap extrakeydefs.lst
 

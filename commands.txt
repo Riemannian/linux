@@ -1,3 +1,24 @@
+
+copy a file from one computer to another via a network:
+scp <path/filename> ad6813@graphic02.doc.ic.ac.uk:/path/to/destination
+
+
+Scroll/navigate through output:
+<your_command> | less
+navigation keys when using less:
+space_bar       next page
+b               prev page
+j               next line
+k               prev line
+<               first line
+>               last line
+/<text>         forward search for text
+?<text>		backward search for text
+n               next search match
+N               prev search match
+q               quit
+
+
 Where are package configuration files stored:
 (stored automatically during setup)
 /usr/local/lib
@@ -30,6 +51,9 @@ to look in a specific directory and all its subdirectories:
 grep "text" -r /path/to/directory/
 notice no wildcard is needed in this case
 
+Locate multiple words within files:
+grep "word1\|word2\|word3" /path/to/files
+
 
 Force copy recursively:
 cp -rf target destination_directory
@@ -39,19 +63,28 @@ hopefully cp won't be aliased everywhere
 
 
 Extract archives:
-to unpack tar.gz aka .tgz:
+  to unpack tar.gz aka .tgz:
 tar zxvf archive_name.tgz
-to unpack tar.gz and place files in another folder:
+  to unpack tar.gz and place files in another folder:
 tar zxvf archive_name.tgz -C /path/to/directory
+  to unpack filename from arch.tar, create and store in dir:
+tar -xf arch.tar dir/filename
+
+  
 
 Unzip:
 unzip file.zip -d destination_folder
 
 
+<<<<<<< HEAD
 List running processes:
 ps aux
 all user processes:
 ps
+
+
+Keep process running:
+http://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session
 
 
 Disable screensaver:
@@ -126,6 +159,11 @@ Which packages include a specific file:
 apt-file search filename
 
 
+Install any python library:
+inside the uncompressed directory for the lib, enter:
+sudo python setup.py install
+
+
 What does apt stand for:
 advanced packaging tool
 
@@ -140,6 +178,16 @@ http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
 
 Launch gummi:
 gummi filename.tex
+
+
+Add plugin to emacs:
+1) place myplugin.el in ~/.emacs.d/
+2) add to ~/.emacs:
+(add-to-list 'load-path "~/.emacs.d/")
+(load "myplugin.el")
+2) or if that doesn't work, instead:
+(require 'myplugin)
+
 
 Lynx browser:
 MOVEMENT:

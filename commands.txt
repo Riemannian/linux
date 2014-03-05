@@ -13,7 +13,7 @@ to locate file ending with file_name_end:
 locate '*file_name_end'
 to locate file starting with file_name_neg:
 locate 'file_name_beg*'
- 
+
 
 Locate file with find:
 find -name "text"
@@ -54,9 +54,21 @@ all user processes:
 ps
 
 
-
 Disable screensaver:
 gsettings set org.gnome.settings-daemon.plugins.power active false
+
+
+Run parallel processes:
+//this won't necessarily run parallel processes, 
+//but it will achieve concurrency
+tmux                            //starts a detached shell
+<command that launches process> //starts a process on that shell
+<hotkey: Ctrl-b d>              //returns from detached shell to home shell
+tmux 
+<command that launches process> //launch another process in another
+<hotkey: Ctrl-b d>              //detached shell
+tmux ls                         //list all detached shells
+tmux a -t <tmux number>         //moves to specified detached shell
 
 
 What is my distro:
@@ -80,6 +92,10 @@ chmod 777 filename
 
 Okular:
 okular file_name
+
+
+Determine pixels in image file:
+identify filename.jpg
 
 
 Navigate on vim:

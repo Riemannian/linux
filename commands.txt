@@ -3,22 +3,6 @@ copy a file from one computer to another via a network:
 scp <path/filename> ad6813@graphic02.doc.ic.ac.uk:/path/to/destination
 
 
-Scroll/navigate through output:
-<your_command> | less
-navigation keys when using less:
-space_bar       next page
-b               prev page
-j               next line
-k               prev line
-<               first line
->               last line
-/<text>         forward search for text
-?<text>		backward search for text
-n               next search match
-N               prev search match
-q               quit
-
-
 Where are package configuration files stored:
 (stored automatically during setup)
 /usr/local/lib
@@ -196,6 +180,26 @@ http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
 
 Launch gummi:
 gummi filename.tex
+
+
+Connect to postgres database system:
+psql --username=<username> --dbname=<database_name>
+
+
+Scroll/navigate through output:
+<your_command> | less
+navigation keys when using less:
+space_bar       next page
+b               prev page
+j               next line
+k               prev line
+<               first line
+>               last line
+/<text>         forward search for text
+?<text>		backward search for text
+n               next search match
+N               prev search match
+q               quit
 
 
 Add plugin to emacs:

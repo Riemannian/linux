@@ -140,6 +140,11 @@ inside the uncompressed directory for the lib, enter:
 sudo python setup.py install
 
 
+Get file size (or image pixel size):
+ls -lh
+//-h stands for human readable
+
+
 What does apt stand for:
 advanced packaging tool
 

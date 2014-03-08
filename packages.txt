@@ -117,3 +117,6 @@ xmodmap -pke > extrakeydefs.lst
 cp -f mykeydefs.lst extrakeydefs.lst
 xmodmap extrakeydefs.lst
 
+
+# Mirage light image viewer in PyGTK
+sudo apt-get install mirage

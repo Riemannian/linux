@@ -3,22 +3,6 @@ copy a file from one computer to another via a network:
 scp <path/filename> ad6813@graphic02.doc.ic.ac.uk:/path/to/destination
 
 
-Scroll/navigate through output:
-<your_command> | less
-navigation keys when using less:
-space_bar       next page
-b               prev page
-j               next line
-k               prev line
-<               first line
->               last line
-/<text>         forward search for text
-?<text>		backward search for text
-n               next search match
-N               prev search match
-q               quit
-
-
 Where are package configuration files stored:
 (stored automatically during setup)
 /usr/local/lib
@@ -34,7 +18,7 @@ to locate file ending with file_name_end:
 locate '*file_name_end'
 to locate file starting with file_name_neg:
 locate 'file_name_beg*'
- 
+
 
 Locate file with find:
 find -name "text"
@@ -76,12 +60,44 @@ Unzip:
 unzip file.zip -d destination_folder
 
 
-List processes:
+List running processes:
 ps aux
+all user processes:
+ps
+all processes containing substrings:
+ps auwxx | grep <substring of top attribute> | grep <other substring of top attribute>
 
 
 Keep process running:
 http://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session
+
+
+Disable screensaver:
+gsettings set org.gnome.settings-daemon.plugins.power active false
+
+
+Run process in background without interruption even if logout, take 1:
+//btw, concurrent processes can simply be obtained with '&'
+//parallel computing requires root access because OS usually manages that
+//tmux just keeps a whole shell running even if you log out, until machine 
+//reboots. so having multiple tmuxes doesn't increases parallelism I think!
+tmux                            //starts a detached shell
+<command that launches process> //starts a process on that shell
+<hotkey: Ctrl-b d>              //returns from detached shell to home shell
+tmux 
+<command that launches process> //launch another process in another
+<hotkey: Ctrl-b d>              //detached shell
+tmux ls                         //list all detached shells
+tmux a -t <tmux number>         //moves to specified detached shell
+
+
+Run process in background without interruption even if logout, take 2:
+nohup
+example:
+nohup rlwrap sicstus -l my_wol.pl < input.txt > output.txt 2>&1 &
+//run sicstus with my_wol.pl consulted and execute commands in
+//input.txt and redirect stderr/stdout to output.txt and place process
+//in background
 
 
 What is my distro:
@@ -105,6 +121,10 @@ chmod 777 filename
 
 Okular:
 okular file_name
+
+
+Determine pixels in image file:
+identify filename.jpg
 
 
 Navigate on vim:
@@ -153,12 +173,38 @@ What does ppa stand for:
 personal package archive
 
 
+view processor activity:
+top
+htop //looks nicer/cooler, with graphical CPU usage for each core
+
+
+
 Launch utorrent:
 http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
 
 
 Launch gummi:
 gummi filename.tex
+
+
+Connect to postgres database system:
+psql --username=<username> --dbname=<database_name>
+
+
+Scroll/navigate through output:
+<your_command> | less
+navigation keys when using less:
+space_bar       next page
+b               prev page
+j               next line
+k               prev line
+<               first line
+>               last line
+/<text>         forward search for text
+?<text>		backward search for text
+n               next search match
+N               prev search match
+q               quit
 
 
 Add plugin to emacs:
@@ -204,5 +250,4 @@ OTHER:
    CTRL-U         - Inside text input line or field,
                     erase input line (more input line commands)
    CTRL-G         - Cancel input or transfer
-
 

@@ -100,6 +100,10 @@ nohup rlwrap sicstus -l my_wol.pl < input.txt > output.txt 2>&1 &
 //in background
 
 
+view image:
+mirage <img_name>
+
+
 What is my distro:
 lsb_release -cs
 trusty

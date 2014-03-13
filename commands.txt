@@ -190,6 +190,15 @@ http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
 Launch gummi:
 gummi filename.tex
 
+Install latex package:
+Note! you just need package.sty to be present in directory of latex file
+for it to load when opening the latex file.
+otherwise:
+go to http://www.ctan.org/search
+enter package search query
+follow rest of instructions at
+http://www.inf.ed.ac.uk/systems/tex/new-packages.html
+under 'installing a package yourself'
 
 Connect to postgres database system:
 psql --username=<username> --dbname=<database_name>

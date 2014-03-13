@@ -105,6 +105,14 @@ sudo apt-get install postgresql-client-common
 sudo apt-get install postgres-xc-client
 
 
+# Prevent ssh from freezing
+add the following to ~/.ssh/config
+Host *
+  ServerAliveInterval 240
+//ssh daemon closes connection if it doesn't hear anything
+//from client for a while, this sends regular signals
+
+
 Hipchat (Group Project messaging):
 sudo su
 echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
@@ -122,3 +130,4 @@ xmodmap extrakeydefs.lst
 
 # Mirage light image viewer in PyGTK
 sudo apt-get install mirage
+

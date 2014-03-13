@@ -106,9 +106,11 @@ sudo apt-get install postgres-xc-client
 
 
 # Prevent ssh from freezing
-add the following to ~/.ssh/config
+//add the following to ~/.ssh/config
 Host *
   ServerAliveInterval 240
+//then modify permissions on file
+chmod 660 ~/.ssh/config
 //ssh daemon closes connection if it doesn't hear anything
 //from client for a while, this sends regular signals
 

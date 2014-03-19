@@ -78,10 +78,10 @@ sudo apt-get install aptitude
 
 Okular:
 sudo apt-get install okular
-would be nice to add ppa, but haven't found one for trusty
-F7: hide the chunky help bar stuff on the left
-F6: show awesomely discreet annotations toolbar
-F3: search (ESC to exit)
+//would be nice to add ppa, but haven't found one for trusty
+//F7: hide the chunky help bar stuff on the left
+//F6: show awesomely discreet annotations toolbar
+//F3: search (ESC to exit)
 
 
 Python libraries:
@@ -140,4 +140,5 @@ xmodmap extrakeydefs.lst
 
 # Mirage light image viewer in PyGTK
 sudo apt-get install mirage
+
 

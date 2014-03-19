@@ -11,6 +11,10 @@ but with
 lsb_release -a
 it will say you have trusty
 
+If on an earlier version, update:
+sudo apt-get update; sudo apt-get dist-upgrade
+sudo update-manager -d
+
 
 Git:
 sudo apt-get install git

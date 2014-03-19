@@ -6,14 +6,18 @@ sudo apt-get update
 
 My version of ubuntu:
 Ubuntu 14.04 Trusty Tahr
-yes, in system settings details it says 13.10
-but with
+//yes, in system settings details it says 13.10
+//but with
 lsb_release -a
-it will say you have trusty
-
-If on an earlier version, update:
+//it will say you have trusty
+//if not, update:
 sudo apt-get update; sudo apt-get dist-upgrade
 sudo update-manager -d
+//CLICK UPGRADE! not ok
+//Some third party entries in your sources.list will
+//be disabled. You can re-enable them after the
+//upgrade with the 'software-properties' tool or
+//your package manager.
 
 
 Git:

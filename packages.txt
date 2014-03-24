@@ -85,11 +85,12 @@ sudo apt-get install okular
 
 
 Python libraries:
-sudo apt-get install python-dev
-sudo apt-get install python-numpy
+sudo apt-get install python-dev   //must start with this one!
+apt-get install python-pip
 sudo apt-get install python-magic
 sudo apt-get install python-matplotlib
 sudo pip install coverage
+sudo pip install numpy
 sudo pip install pymongo
 
 

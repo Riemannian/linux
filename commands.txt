@@ -39,6 +39,10 @@ Locate multiple words within files:
 grep "word1\|word2\|word3" /path/to/files
 
 
+Redirect stderr, stdout to file AND print stderr, stdout to console:
+do_something 2>&1 | tee -a some_file
+
+
 Force copy recursively:
 cp -rf target destination_directory
 if this doesn't work, then your cp is aliased
@@ -84,9 +88,6 @@ Run process in background without interruption even if logout, take 1:
 tmux                            //starts a detached shell
 <command that launches process> //starts a process on that shell
 <hotkey: Ctrl-b d>              //returns from detached shell to home shell
-tmux 
-<command that launches process> //launch another process in another
-<hotkey: Ctrl-b d>              //detached shell
 tmux ls                         //list all detached shells
 tmux a -t <tmux number>         //moves to specified detached shell
 

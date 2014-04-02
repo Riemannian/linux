@@ -1,7 +1,7 @@
 
-copy a file from one computer to another via a network:
-scp <path/filename> ad6813@graphic02.doc.ic.ac.uk:/path/to/destination
-
+copy files from local to remote computer via ssh:
+scp local/path/filename ad6813@shell4.doc.ic.ac.uk:/remote/path
+scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 
 Where are package configuration files stored:
 (stored automatically during setup)
@@ -50,10 +50,11 @@ move to another environment (bash, ksh, tcsh) and try again
 hopefully cp won't be aliased everywhere
 
 
-How much space on disk:
+How much size space on disk:
 df -h                //-h is for human readable form
 du -s -h path/to/dir //how much space does dir take
 du -h path/to/dir    //recursive
+
 
 
 
@@ -100,13 +101,13 @@ tmux a -t <tmux number>         //moves to specified detached shell
 
 
 Run process in background without interruption even if logout, take 2:
-nohup
+nohup     //no hang-up
 example:
 nohup rlwrap sicstus -l my_wol.pl < input.txt > output.txt 2>&1 &
 //run sicstus with my_wol.pl consulted and execute commands in
 //input.txt and redirect stderr/stdout to output.txt and place process
 //in background
-
+ps aux | grep ad6813   //to find your running process
 
 view image:
 mirage <img_name>
@@ -190,6 +191,9 @@ top
 htop //looks nicer/cooler, with graphical CPU usage for each core
 
 
+view gpu activity:
+nvidia-smi -a
+
 
 Launch utorrent:
 http://askubuntu.com/questions/104094/how-to-install-utorrent-step-by-step
@@ -272,3 +276,7 @@ OTHER:
                     erase input line (more input line commands)
    CTRL-G         - Cancel input or transfer
 
+
+   
+ Cuda-ConvNet:
+saved checkpoint to /homes/ad6813/group-project-master/ML/models/ensemble_network/leaf_network/saves/../models/ensemble_network/leaf_network/saves/ConvNet__2014-03-31_09.24.20

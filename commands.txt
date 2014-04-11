@@ -118,8 +118,25 @@ lsb_release -cs
 trusty
 
 
+Is my machine 32 bit or 64 bit:
+uname -m
+
+
 Uninstall:
 sudo apt-get --purge remove program_name
+
+
+Install package from command line:
+cd to directory containing .deb file
+sudo spkg -i that_package.deb
+
+
+Solve unmet dependencies:
+//note: last time I had this, I went to .deb file in downloads
+//and manually installed it using above.
+General installation issues, 2 useful posts:
+http://askubuntu.com/questions/140246/how-do-i-resolve-unmet-dependencies
+http://ubuntuforums.org/showthread.php?t=1986644
 
 
 Clean space:
@@ -150,6 +167,10 @@ scrapy version -v
 How much RAM am I using:
 free -m
 
+
+What's my internet speed:
+wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip
+//will download a 10MB file to dustbin then print avg download speed
 
 PPA installation:
 sudo add-apt ppa:name_of_ppa
@@ -278,5 +299,12 @@ OTHER:
 
 
    
- Cuda-ConvNet:
-saved checkpoint to /homes/ad6813/group-project-master/ML/models/ensemble_network/leaf_network/saves/../models/ensemble_network/leaf_network/saves/ConvNet__2014-03-31_09.24.20
+Cuda-ConvNet:
+nohup ccn-train
+models/ensemble_network/leaf_network/options_01-04-2014.txt 2>&1 | tee
+-a /data2/ImageNet/ensemble_network/leaf_network/output_01-04-2014.txt
+&
+
+
+ saved checkpoint to /homes/ad6813/group-project-master/ML/models/ensemble_network/leaf_network/saves/../models/ensemble_network/leaf_network/saves/ConvNet__2014-03-31_09.24.20
+

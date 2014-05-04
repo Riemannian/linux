@@ -122,6 +122,13 @@ Is my machine 32 bit or 64 bit:
 uname -m
 
 
+Display CPU info:
+less /proc/cpuinfo
+//you have a dual core hyperthreading processor 
+//http://www.makeuseof.com/tag/hyperthreading-technology-explained/
+//http://www.richweb.com/cpu_info
+
+
 Uninstall:
 sudo apt-get --purge remove program_name
 
@@ -238,19 +245,7 @@ psql --username=<username> --dbname=<database_name>
 
 
 Scroll/navigate through output:
-<your_command> | less
-navigation keys when using less:
-space_bar       next page
-b               prev page
-j               next line
-k               prev line
-<               first line
->               last line
-/<text>         forward search for text
-?<text>		backward search for text
-n               next search match
-N               prev search match
-q               quit
+less <command>
 
 
 Add plugin to emacs:

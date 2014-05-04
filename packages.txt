@@ -143,3 +143,14 @@ xmodmap extrakeydefs.lst
 sudo apt-get install mirage
 
 
+# uTorrent
+cd Downloads
+wget http://download.utorrent.com/linux/utorrent-server-3.0-25053.tar.gz
+sudo tar xvzf utorrent-server-3.0-25053.tar.gz -C /opt/
+sudo chmod -R 777 /opt/utorrent-server-v3_0/
+sudo ln -s /opt/utorrent-server-v3_0/utserver /usr/bin/utserver
+utserver -settingspath /opt/utorrent-server-v3_0/
+//If you get an error about libssl.so package missing:
+sudo apt-get install libssl0.9.8:i386
+
+

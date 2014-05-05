@@ -120,6 +120,12 @@ trusty
 
 Is my machine 32 bit or 64 bit:
 uname -m
+//x86_64 means part of X86 family, uses 64 bit registers, 64 bit mem
+addresses, max 2^64 main memory
+
+
+System performance stats:
+nmon         //loads of awesome stuff!
 
 
 Display CPU info:
@@ -127,6 +133,7 @@ less /proc/cpuinfo
 //you have a dual core hyperthreading processor 
 //http://www.makeuseof.com/tag/hyperthreading-technology-explained/
 //http://www.richweb.com/cpu_info
+
 
 
 Uninstall:

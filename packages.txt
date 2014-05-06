@@ -84,6 +84,15 @@ sudo apt-get install okular
 //F3: search (ESC to exit)
 
 
+Toggle brightness:
+//edit GRUB
+sudo emacs /etc/default/grub
+//change GRUB_CMDLINE_LINUX_DEFAULT to
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_osi=Linux acpi_backlight=vendor"
+sudo update-grub
+sudo reboot
+
+
 Python libraries:
 sudo apt-get install python-dev   //must start with this one!
 apt-get install python-pip

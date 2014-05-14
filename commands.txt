@@ -301,12 +301,3 @@ OTHER:
 
 
    
-Cuda-ConvNet:
-nohup ccn-train
-models/ensemble_network/leaf_network/options_01-04-2014.txt 2>&1 | tee
--a /data2/ImageNet/ensemble_network/leaf_network/output_01-04-2014.txt
-&
-
-
- saved checkpoint to /homes/ad6813/group-project-master/ML/models/ensemble_network/leaf_network/saves/../models/ensemble_network/leaf_network/saves/ConvNet__2014-03-31_09.24.20
-

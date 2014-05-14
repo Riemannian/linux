@@ -57,15 +57,15 @@ du -h path/to/dir    //recursive
 
 
 
-
 Extract archives:
-  to unpack tar.gz aka .tgz:
+  tar.gz, .tgz:
 tar zxvf archive_name.tgz
-  to unpack tar.gz and place files in another folder:
+  tar.gz, place files in another folder:
 tar zxvf archive_name.tgz -C /path/to/directory
-  to unpack filename from arch.tar, create and store in dir:
-tar -xf arch.tar dir/filename
-
+  arch.tar, place files in another folder:
+tar -xf arch.tar -C dir/filename
+  tar.bz2, create and store in dir:
+tar jxf tar.bz2 -C dir/filename
   
 
 Unzip:
@@ -300,4 +300,7 @@ OTHER:
    CTRL-G         - Cancel input or transfer
 
 
-   
+save source install files under:
+/usr/local/src
+
+

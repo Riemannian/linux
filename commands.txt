@@ -3,11 +3,6 @@ copy files from local to remote computer via ssh:
 scp local/path/filename ad6813@shell4.doc.ic.ac.uk:/remote/path
 scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 
-Where are package configuration files stored:
-(stored automatically during setup)
-/usr/local/lib
-
-
 Locate file:
 locate file_name_substring
 notice you need no wild cards, no inverted commas to locate file
@@ -151,6 +146,19 @@ Solve unmet dependencies:
 General installation issues, 2 useful posts:
 http://askubuntu.com/questions/140246/how-do-i-resolve-unmet-dependencies
 http://ubuntuforums.org/showthread.php?t=1986644
+//this is a specific case, but great to learn from:
+http://www.bitsbythepound.com/installing-wink-on-64-bit-ubuntu-210.html
+
+
+install .deb file, ie a package:
+sudo dpkg -i package_filename
+//dpkg is the manual, backend equivalent of apt-get
+//dpkg -i is eq to apt-get install
+
+
+Where are package configuration files stored:
+(stored automatically during setup)
+/usr/local/lib
 
 
 Clean space:

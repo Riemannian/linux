@@ -163,3 +163,9 @@ utserver -settingspath /opt/utorrent-server-v3_0/
 sudo apt-get install libssl0.9.8:i386
 
 
+# gimp - image editor
+sudo apt-get install gimp
+
+
+# shutter - snipping tool
+sudo apt-get install shutter

@@ -34,6 +34,10 @@ Locate multiple words within files:
 grep "word1\|word2\|word3" /path/to/files
 
 
+What shell am I using:
+echo $SHELL
+
+
 Redirect stderr, stdout to file AND print stderr, stdout to console:
 do_something 2>&1 | tee -a some_file
 
@@ -65,6 +69,11 @@ tar jxf tar.bz2 -C dir/filename
 
 Unzip:
 unzip file.zip -d destination_folder
+
+
+add alias:
+alias emacs emacs23
+//add that to your ~/.cshrc file
 
 
 List running processes:

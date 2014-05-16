@@ -72,7 +72,7 @@ unzip file.zip -d destination_folder
 
 
 add alias:
-alias emacs emacs23
+alias emacs="emacs23"
 //add that to your ~/.cshrc file
 
 

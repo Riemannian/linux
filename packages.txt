@@ -62,6 +62,10 @@ else
 fi
 
 
+# bashrc configured the way you like it:
+cp bash/bashrc.sh ~/.bashrc
+
+
 Disable bluetooth on startup:
 didn't work: sudoedit /etc/rc.local, rfkill block bluetooth
 sudo emacs /etc/rc.local

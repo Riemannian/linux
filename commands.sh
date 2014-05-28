@@ -15,13 +15,40 @@ scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 # ---
 
 
+Git remove branch:
+git branch -d branchname
+
+
+Git switch from https to ssh:
+git remote set-url origin git@github.com:HoldenCaulfieldRye/repo_name.git
+
+
 Test if ssh working:
 ssh -T git@github.com
 
 
+Download from command line:
+wget download_link
+
+
 FTP commands:
+# connect & save all files in ftp server directory to local directory:
+wget -r ftp://username:password@hostname.com
+# connect to server:
+ftp user@ftp.example.com
+# set the mode of file transfer:
+ascii          # good for txt
+binary         # recommended for all non txt: images, archives etc
+# authorised commands:
+ls
+mget           # download multiple files to local dir
+get filename   # saves to local dir
+cd             # change dir on ftp server
+lcd            # change dir locally
+pwd            # print dir path on ftp server
+lpwd           # print local dir path
 #internet file transfer program
-http://www.cyberciti.biz/faq/linux-unix-ftp-commands/
+#http://www.cyberciti.biz/faq/linux-unix-ftp-commands/
 
 
 Locate file:
@@ -103,10 +130,12 @@ tar zxvf archive_name.tgz -C /path/to/directory
 tar -xf arch.tar -C dir/filename
 # tar.bz2, create and store in dir:
 tar jxf tar.bz2 -C dir/filename
-  
-
-Unzip:
+# zip:
 unzip file.zip -d destination_folder
+
+
+Create archive:
+zip zipfilename file1 file2 fil3
 
 
 add alias:

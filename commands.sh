@@ -92,10 +92,14 @@ grep "word1\|word2\|word3" /path/to/files
 List files:
 # by date last modified:
 ls -lt
-# by file size (or image pixel size):
+# by file size:
 ls -lh   #-h stands for human readable
 # matching a certain expression
 ls image_[0-9]{.jpg,meta.dat}  # notice no inverted commas!
+
+
+Image pixel size:
+convert MyJpeg.jpg -print "Size: %wx%h\n" /dev/null
 
 
 What shell am I using:
@@ -114,11 +118,25 @@ echo "$PATH"
 export PATH=$PATH:/path/to/dir1:/path/to/dir2
 
 
-How much size space on disk:
+How much space:
+# used and available on entire disk:
 df -h                #-h is for human readable form
-du -s -h path/to/dir #how much space does dir take
-du -h path/to/dir    #recursive
+# used in current dir:
+du -h
+# used in specific dir:
+du -s -h path/to/dir  
+du -h path/to/dir     # recursive
 
+
+How many files / dirs / symlinks:
+# files or dirs or symlinks
+ls -l dir | wc -l
+# files only
+ls -l dir | grep ^- | wc -l
+# dirs only
+ls -l dir | grep ^d | wc -l
+# symlinks only
+ls -l dir | grep ^l | wc -l
 
 
 Extract archives:
@@ -210,7 +228,10 @@ nmon         #loads of awesome stuff!
 
 Display CPU info:
 less /proc/cpuinfo
-#you have a dual core hyperthreading processor 
+# you have a dual core hyperthreading processor
+# graphic02 has a quadcore processor
+# range(coreid) gives you number of physical cores
+# range(physical\ id) gives you number of CPUs (a dual core CPU is still 1 CPU)
 #http://www.makeuseof.com/tag/hyperthreading-technology-explained/
 #http://www.richweb.com/cpu_info
 
@@ -231,6 +252,16 @@ Install tar.gz tar.bz2 file:
 Install package from command line:
 # cd to directory containing .deb file
 sudo spkg -i that_package.deb
+
+
+Install python package without root privileges:
+python setup.py install --prefix=~/.local
+# or
+easy_install --prefix=$HOME/local package_name
+# or
+pip install --install-option="--prefix=$HOME/local" package_name
+# http://bit.ly/SjzKAU
+# http://bit.ly/SjzJNb
 
 
 Solve unmet dependencies:
@@ -392,6 +423,14 @@ Add plugin to emacs:
 # 2) or if that doesn't work, instead:
 (require 'myplugin')
 
+Emacs commands:
+# search backwards
+C-r
+# replace string
+M-x replace-string
+# indent region
+C-c >
+C-c <
 
 Lynx browser:
 MOVEMENT:

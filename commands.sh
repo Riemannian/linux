@@ -163,6 +163,7 @@ Redirect stderr, stdout to file AND print stderr, stdout to console:
 do_something 2>&1 | tee -a some_file
 #don't care about console, just everything to file:
 command >> output.txt 2>&1 
+# IF ERROR: WORKS IN BASH, not tcsh
 
 
 Append text to file(s):
@@ -416,6 +417,12 @@ htop #looks nicer/cooler, with graphical CPU usage for each core
 #   Yellow/Orange = Cache
 cache memory takes up all space?
 # http://bit.ly/1pzlIJF
+VIRT:
+# virtual size of a process ie: sum of
+# memory it is using
+# memory it has mapped to itself
+# files on disk that have been mapped into it
+# memory shared with other processes
 
 gpu specs:
 hardinfo   #needs sudo apt-get
@@ -613,3 +620,4 @@ bold:   \bf
 Video edit from command line:
 ffmpeg, deprecated, avconv instead - really awesome
 
+Gnuplot graph from command line:

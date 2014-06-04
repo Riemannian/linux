@@ -1,3 +1,6 @@
+Which shell am I using:
+echo $SHELL
+
 
 Copy:
 # copy multiple files here
@@ -12,20 +15,23 @@ cp -rf target destination_directory
 # files from local to remote computer via ssh:
 scp local/path/filename ad6813@shell4.doc.ic.ac.uk:/remote/path
 scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
+# pipe scp:
+# bit.ly/1kzp8ZY
 # ---
-
-
 Git remove branch:
 git branch -d branchname
-
 
 Git switch from https to ssh:
 git remote set-url origin git@github.com:HoldenCaulfieldRye/repo_name.git
 
+Git when file deleted:
+git log -- [file_path]
 
-Test if ssh working:
-ssh -T git@github.com
+Git checkout back to head:
+git checkout master
 
+
+Create hard link:
 
 Download from command line:
 wget download_link
@@ -78,7 +84,10 @@ find -regex
 
 Locate text within files:
 # to look in whole filesystem:
+DONT PUT * WILDCARDS IN TEXT TO SEARCH! # we know it's a substring
 grep "text" /*
+# to look here:
+grep "text" .
 # to look in a specific directory:
 grep "text" /path/to/directory/*
 # to look in a specific directory and all its subdirectories:
@@ -89,6 +98,16 @@ Locate multiple words within files:
 grep "word1\|word2\|word3" /path/to/files
 
 
+Create symlink:
+ln -s <dest> <linkname>
+# hard link
+ln <dst> <linkname>
+
+
+Diff between two files:
+grep -f file1 file2
+
+
 List files:
 # by date last modified:
 ls -lt
@@ -96,6 +115,40 @@ ls -lt
 ls -lh   #-h stands for human readable
 # matching a certain expression
 ls image_[0-9]{.jpg,meta.dat}  # notice no inverted commas!
+
+How many files / dirs / symlinks:
+# Number of files 
+# files or dirs or symlinks
+ls -l dir | wc -l
+# files only
+ls -l dir | grep ^- | wc -l
+# dirs only
+ls -l dir | grep ^d | wc -l
+# symlinks only
+ls -l dir | grep ^l | wc -l
+
+
+
+
+What is my local ssh address:
+# it's your ip address
+fgrep `hostname` /etc/hosts
+# also
+ifconfig
+
+
+Test if ssh working:
+ssh -T git@github.com
+
+
+Launch an ssh tunnel:
+ssh -D 8080 -C -N username@example.com
+# bit.ly/S1t8Xo
+
+
+Mount remote filesystem:
+sshfs 
+# bit.ly/1kzzg4V
 
 
 Image pixel size:
@@ -108,14 +161,33 @@ echo $SHELL
 
 Redirect stderr, stdout to file AND print stderr, stdout to console:
 do_something 2>&1 | tee -a some_file
+#don't care about console, just everything to file:
+command >> output.txt 2>&1 
 
+
+Append text to file(s):
+# to end of file:
+echo 'text' >> file
+# to beginning of file:
+sed -i 'text' file
+# to beg & end of multiple files
+for file in *.txt; do
+    echo 'text' >> file &&
+    sed -i 'text' file
+done
+# but apparently this one is better:
+echo 'task goes here' | cat - todo.txt > temp && mv temp todo.txt
+# interpret syntax: cf comment bit.ly/1wOhEqR 
+    
 
 Environment variables:
 #what is PATH set to:
 echo "$PATH"
-#modify path:
-#bash:
+# append to path variable:
+export PATH=$PATH:/path/to/dir1
+# append multiple paths
 export PATH=$PATH:/path/to/dir1:/path/to/dir2
+# bit.ly/1u4Souj
 
 
 How much space:
@@ -126,17 +198,6 @@ du -h
 # used in specific dir:
 du -s -h path/to/dir  
 du -h path/to/dir     # recursive
-
-
-How many files / dirs / symlinks:
-# files or dirs or symlinks
-ls -l dir | wc -l
-# files only
-ls -l dir | grep ^- | wc -l
-# dirs only
-ls -l dir | grep ^d | wc -l
-# symlinks only
-ls -l dir | grep ^l | wc -l
 
 
 Extract archives:
@@ -168,10 +229,8 @@ ps
 # all processes containing substrings:
 ps auwxx | grep <substring of top attribute> | grep <other substring of top attribute>
 
-
-Keep process running:
-# http://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session
-
+Kill process:
+kill <PID>
 
 Disable screensaver:
 gsettings set org.gnome.settings-daemon.plugins.power active false
@@ -203,7 +262,8 @@ mirage <img_name>
 
 
 What is my distro:
-lsb_release -cs
+# which version of ubuntu
+lsb_release -a
 trusty
 
 
@@ -245,6 +305,13 @@ sudo apt-get remove package_name
 sudo apt-get --purge remove package_name
 
 
+Install package without root priviledges:
+dpkg -i --force-not-root --root=$HOME package.deb
+# better to have --root=$HOME/local instead?
+# ---
+# alternatively, use schroot - apparently involved: bit.ly/1ksYliJ
+
+
 Install tar.gz tar.bz2 file:
 # http://askubuntu.com/questions/25961/how-do-i-install-a-tar-gz-or-tar-bz2-file
 
@@ -253,15 +320,6 @@ Install package from command line:
 # cd to directory containing .deb file
 sudo spkg -i that_package.deb
 
-
-Install python package without root privileges:
-python setup.py install --prefix=~/.local
-# or
-easy_install --prefix=$HOME/local package_name
-# or
-pip install --install-option="--prefix=$HOME/local" package_name
-# http://bit.ly/SjzKAU
-# http://bit.ly/SjzJNb
 
 
 Solve unmet dependencies:
@@ -336,11 +394,6 @@ Which packages include a specific file:
 apt-file search filename
 
 
-Install any python library:
-#inside the uncompressed directory for the lib, enter:
-sudo python setup.py install
-
-
 What does apt stand for:
 advanced packaging tool
 
@@ -352,7 +405,17 @@ What does ppa stand for:
 view processor activity:
 top
 htop #looks nicer/cooler, with graphical CPU usage for each core
-
+# interpret coolours in status bars:
+# CPU:
+#   Blue  = Low priority threads
+#   Green = Normal priority threads
+#   Red   = Kernel threads
+# Memory:
+#   Green = Used memory
+#   Blue  = Buffers
+#   Yellow/Orange = Cache
+cache memory takes up all space?
+# http://bit.ly/1pzlIJF
 
 gpu specs:
 hardinfo   #needs sudo apt-get
@@ -365,6 +428,21 @@ nvidia-smi -a
 #clock speed: 889 MHz
 #main memory: 6 GB
 #memory bandwidth: 336 GB/sec
+
+
+Network diagnostics, mtr:
+# find bottleneck in ssh connection:
+mtr <IP address or hostname>
+# shows state, connection, responsiveness of intermediate hosts.
+# bit.ly/1pzoCOp
+# ---
+BSG bottleneck # ae29.londpg-sbr1.ja.net
+Interpret mtr stats:
+Loss% # % of packet loss at corresponding hop
+Snt   # number of packets sent
+Avg   # avg latency in milliseconds of packets sent
+# ---
+# one-off losses are likely due to rate limiting.
 
 
 Rename all files otf:
@@ -472,6 +550,9 @@ save source install files under:
 /usr/local/src
 
 
+# Gcc which version:
+gcc -v
+
 #Caffe:
 #which version of CUDA
 nvcc --version
@@ -484,4 +565,51 @@ pkg-config --modversion opencv
 #which version of numpy
 numpy.version.version
 
+
+
+Python:
+
+Install any python library:
+#inside the uncompressed directory for the lib, enter:
+sudo python setup.py install
+
+Install python package without root privileges:
+DONT FORGET TO EXTEND PYTHONPATH
+#---
+python setup.py install --prefix=~/.local
+# or
+easy_install --prefix=$HOME/.local package_name
+# or
+pip install --install-option="--prefix=$HOME/.local" package_name
+# http://bit.ly/SjzKAU
+# http://bit.ly/SjzJNb
+
+Print pythonpath:
+import os
+print sys.path
+
+Extent module search path:
+# just for one program
+sys.path.append('dir')
+# permanently:
+export PYTHONPATH=$PYTHONPATH:/my/other/path
+
+Python egg:
+# bit.ly/1u4ZizE
+Update egg:
+python setup.py <whichever_args_are_needed>
+
+Python import .so file:
+# for some reason, not found even when in cwd
+# solution is in this post: http://bit.ly/1jQHz7l
+# bit.ly/1jQKbSS
+
+
+LaTeX:
+italic: \it
+bold:   \bf
+
+
+Video edit from command line:
+ffmpeg, deprecated, avconv instead - really awesome
 

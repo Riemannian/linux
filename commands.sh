@@ -618,6 +618,25 @@ bold:   \bf
 
 
 Video edit from command line:
-ffmpeg, deprecated, avconv instead - really awesome
+# ffmpeg deprecated,
+avconv 
+
 
 Gnuplot graph from command line:
+# see pipe-classification/models/stats-scripts/gn
+
+
+Lisp emacs:
+# extend emacs load path
+(add-to-list 'load-path "~/.emacs.d/lisp/")  ;;' 
+# ---
+# load elisp file on emacs launch:
+(require 'file_rootname)  ;;'
+  # rootname: filename without extension
+# ---
+# automatically open files with .ext extension using the wtv-mode.el file
+# (which should be located within reach of load-path) 
+(setq auto-mode-alist 
+      (append '(("\\.\\(gp\\|gnuplot\\)$" . gnuplot-mode)) auto-mode-alist))  ;;'
+
+

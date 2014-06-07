@@ -577,12 +577,13 @@ numpy.version.version
 Python:
 
 Install any python library:
-#inside the uncompressed directory for the lib, enter:
+# inside the uncompressed directory for the lib, enter:
 sudo python setup.py install
+# ---
 
 Install python package without root privileges:
 DONT FORGET TO EXTEND PYTHONPATH
-#---
+# ---
 python setup.py install --prefix=~/.local
 # or
 easy_install --prefix=$HOME/.local package_name
@@ -590,6 +591,10 @@ easy_install --prefix=$HOME/.local package_name
 pip install --install-option="--prefix=$HOME/.local" package_name
 # http://bit.ly/SjzKAU
 # http://bit.ly/SjzJNb
+# ---
+# upgrade a library in /usr/lib without sudo:
+pip install --prefix=${HOME} six; export PYTHONPATH=$PYTHONPATH:/home/yourusername/lib/python2.6/site-packages
+
 
 Print pythonpath:
 import os
@@ -610,6 +615,9 @@ Python import .so file:
 # for some reason, not found even when in cwd
 # solution is in this post: http://bit.ly/1jQHz7l
 # bit.ly/1jQKbSS
+
+Python print dict contents to txt file:
+json.dump(dict, open('dict.txt','w'))
 
 
 LaTeX:
@@ -638,5 +646,9 @@ Lisp emacs:
 # (which should be located within reach of load-path) 
 (setq auto-mode-alist 
       (append '(("\\.\\(gp\\|gnuplot\\)$" . gnuplot-mode)) auto-mode-alist))  ;;'
+
+
+Snipping tool:
+shutter
 
 

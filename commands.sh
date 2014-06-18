@@ -21,6 +21,9 @@ scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 Git remove branch:
 git branch -d branchname
 
+Git branch from commit:
+git branch branch_name commit_id
+
 Git switch from https to ssh:
 git remote set-url origin git@github.com:HoldenCaulfieldRye/repo_name.git
 

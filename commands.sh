@@ -30,6 +30,8 @@ git log -- [file_path]
 Git checkout back to head:
 git checkout master
 
+Git merge certain files:
+
 
 Create hard link:
 
@@ -91,8 +93,10 @@ grep "text" .
 # to look in a specific directory:
 grep "text" /path/to/directory/*
 # to look in a specific directory and all its subdirectories:
-grep "text" -r /path/to/directory/
-# notice no wildcard is needed in this case
+grep -r "text" /path/to/directory/
+# to look there except for a directory
+grep -r --exclude-dir=dirname "text" path
+
 
 Locate multiple words within files:
 grep "word1\|word2\|word3" /path/to/files
@@ -113,6 +117,7 @@ List files:
 ls -lt
 # by file size:
 ls -lh   #-h stands for human readable
+du -sh *
 # matching a certain expression
 ls image_[0-9]{.jpg,meta.dat}  # notice no inverted commas!
 
@@ -196,6 +201,7 @@ How much space:
 df -h                #-h is for human readable form
 # used in current dir:
 du -h
+du -sh *
 # used in specific dir:
 du -s -h path/to/dir  
 du -h path/to/dir     # recursive

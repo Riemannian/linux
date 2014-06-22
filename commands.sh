@@ -33,7 +33,11 @@ git log -- [file_path]
 Git checkout back to head:
 git checkout master
 
+Git checkout a single file:
+git checkout commit_id -- filename
+
 Git merge certain files:
+
 
 
 Create hard link:
@@ -259,13 +263,10 @@ tmux a -t <tmux number>         #moves to specified detached shell
 
 
 Run process in background without interruption even if logout, take 2:
-nohup     #no hang-up
-# example:
-nohup rlwrap sicstus -l my_wol.pl < input.txt > output.txt 2>&1 &
-#run sicstus with my_wol.pl consulted and execute commands in
-#input.txt and redirect stderr/stdout to output.txt and place process
-#in background
-ps aux | grep ad6813   #to find your running process
+nohup #no hang-up
+# ---
+# execute script with nohup
+nohup path/to/script "upload" &
 
 view image:
 mirage <img_name>
@@ -315,11 +316,14 @@ sudo apt-get remove package_name
 sudo apt-get --purge remove package_name
 
 
-Install package without root priviledges:
+Install package without root priviledges without sudo:
 dpkg -i --force-not-root --root=$HOME package.deb
 # better to have --root=$HOME/local instead?
 # ---
 # alternatively, use schroot - apparently involved: bit.ly/1ksYliJ
+# ---
+# the way you did it with c++ boost:
+./b2 install --prefix=$HOME
 
 
 Install tar.gz tar.bz2 file:
@@ -444,6 +448,17 @@ nvidia-smi -a
 #clock speed: 889 MHz
 #main memory: 6 GB
 #memory bandwidth: 336 GB/sec
+
+nvidia htop for gpu:
+nvidia-smi
+# not able to list proceses for all though, because:
+# what is 'not supported' is the ability to see the CUDA process
+# name(s) active on the GPU via nvidia-smi, because NVIDIA believes
+# that to be a 'professional' feature and restricts it to higher end
+# cards that are fully supported by nvidia-smi.
+# ---
+# hack around it! bit.ly/1nmjmJp
+
 
 
 Network diagnostics, mtr:
@@ -661,3 +676,16 @@ Snipping tool:
 shutter
 
 
+Cron:
+# automatically run script every few minutes
+# bit.ly/1yBS9tM
+# bit.ly/1yBSg8D
+# Have cron run a script no matter what, and then have the script decide
+# if the program is running and start it if necessary
+# ---
+what is it:
+# a daemon that executes shell commands periodically. Cron is
+# configured by a file called a crontab.
+# ---
+how to check on it:
+crontab -l 

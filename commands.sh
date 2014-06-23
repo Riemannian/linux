@@ -245,6 +245,10 @@ ps auwxx | grep <substring of top attribute> | grep <other substring of top attr
 
 Kill process:
 kill <PID>
+# ---
+# kill all okular processes:
+killall -9 okular
+
 
 Disable screensaver:
 gsettings set org.gnome.settings-daemon.plugins.power active false
@@ -500,6 +504,7 @@ Launch utorrent:
 Launch gummi:
 gummi filename.tex
 
+LaTeX:
 Install latex package:
 #Note! you just need package.sty to be present in directory of latex file
 #for it to load when opening the latex file.
@@ -509,11 +514,18 @@ Install latex package:
 #follow rest of instructions at
 #http://www.inf.ed.ac.uk/systems/tex/new-packages.html
 #under 'installing a package yourself'
-
-
+# ---
 Compile latex into pdf:
 pdflatex file.tex
 #if error appears, you can hit enter to skip it
+# ---
+Comment block:
+Ctrl-T
+# ---
+Uncomment block:
+Ctrl-U
+# ---
+
 
 
 Connect to postgres database system:
@@ -678,8 +690,8 @@ shutter
 
 Cron:
 # automatically run script every few minutes
+# bit.ly/1pDhXkW
 # bit.ly/1yBS9tM
-# bit.ly/1yBSg8D
 # Have cron run a script no matter what, and then have the script decide
 # if the program is running and start it if necessary
 # ---
@@ -687,5 +699,12 @@ what is it:
 # a daemon that executes shell commands periodically. Cron is
 # configured by a file called a crontab.
 # ---
-how to check on it:
-crontab -l 
+select a crontab to activate:
+crontab -u <user> <crontab_file>
+# ---
+which crontab active:
+crontab -l
+# ---
+your serious tweak:
+# you have created /etc/cron.allow with 'alex' inside 
+# bit.ly/1pDhXkW

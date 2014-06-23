@@ -1,0 +1,2 @@
+0,10,20,30,40,50 * * * * /home/alex/Git/pipe-classification/reports/report/autocommit.sh >> /home/alex/Git/pipe-classification/reports/report/cron_output.txt 2>&1
+0 2 * * * /home/alex/Git/linux/autocommit.sh >> /home/alex/Git/linux/cront_output.txt 2>&1

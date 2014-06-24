@@ -109,6 +109,12 @@ Locate multiple words within files:
 grep "word1\|word2\|word3" /path/to/files
 
 
+Delete all files except:
+find /path/to/dir \! "text" -print0 | xargs --null rm
+# what is -print0 for?
+# what is xargs --null for?
+
+
 Create symlink:
 ln -s <dest> <linkname>
 # hard link

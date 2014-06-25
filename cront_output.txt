@@ -1,0 +1,5 @@
+[master c7a8deb] auto-commit
+ 2 files changed, 6 insertions(+)
+ create mode 100644 cront_output.txt
+To git@github.com:HoldenCaulfieldRye/linux.git
+   dd0eee0..c7a8deb  master -> master

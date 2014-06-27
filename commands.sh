@@ -662,6 +662,9 @@ Python import .so file:
 Python print dict contents to txt file:
 json.dump(dict, open('dict.txt','w'))
 
+Python pretty print list:
+print '%s' % ', '.join(map(str, mylist))
+
 
 LaTeX:
 italic: \it

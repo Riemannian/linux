@@ -3,3 +3,13 @@
  create mode 100644 cront_output.txt
 To git@github.com:HoldenCaulfieldRye/linux.git
    dd0eee0..c7a8deb  master -> master
+[master 753e84b] auto-commit
+ 3 files changed, 44 insertions(+), 31 deletions(-)
+To git@github.com:HoldenCaulfieldRye/linux.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'git@github.com:HoldenCaulfieldRye/linux.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.

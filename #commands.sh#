@@ -129,6 +129,12 @@ diff -arq dir1 dir2
 # recursive
 diff -r dir1 dir2
 
+Common between multiple dirs:
+dirs=( "A dir" "B dir" "C dir" "D dir" )
+find "${dirs[@]}" -maxdepth 1 -type f -name "*" -printf '%f\n' |
+    sort | uniq -c | sed -n "s/^ *${#dirs[@]} //p"
+
+
 List files:
 # by date last modified:
 ls -lt
@@ -137,8 +143,6 @@ ls -lh   #-h stands for human readable
 du -sh *
 # matching a certain expression
 ls image_[0-9]{.jpg,meta.dat}  # notice no inverted commas!
-# except those matching:
-ls | grep -v '.txt'
 
 How many files / dirs / symlinks:
 # Number of files 
@@ -185,12 +189,9 @@ echo $SHELL
 
 Redirect stderr, stdout to file AND print stderr, stdout to console:
 do_something 2>&1 | tee -a some_file
-# don't care about console, just everything to file:
+#don't care about console, just everything to file:
 command >> output.txt 2>&1 
 # IF ERROR: WORKS IN BASH, not tcsh
-# ---
-only stdout:
-command > out.txt
 
 
 Append text to file(s):

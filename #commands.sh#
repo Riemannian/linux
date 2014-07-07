@@ -129,12 +129,6 @@ diff -arq dir1 dir2
 # recursive
 diff -r dir1 dir2
 
-Common between multiple dirs:
-dirs=( "A dir" "B dir" "C dir" "D dir" )
-find "${dirs[@]}" -maxdepth 1 -type f -name "*" -printf '%f\n' |
-    sort | uniq -c | sed -n "s/^ *${#dirs[@]} //p"
-
-
 List files:
 # by date last modified:
 ls -lt
@@ -143,6 +137,8 @@ ls -lh   #-h stands for human readable
 du -sh *
 # matching a certain expression
 ls image_[0-9]{.jpg,meta.dat}  # notice no inverted commas!
+# except those matching:
+ls | grep -v '.txt'
 
 How many files / dirs / symlinks:
 # Number of files 
@@ -189,9 +185,12 @@ echo $SHELL
 
 Redirect stderr, stdout to file AND print stderr, stdout to console:
 do_something 2>&1 | tee -a some_file
-#don't care about console, just everything to file:
+# don't care about console, just everything to file:
 command >> output.txt 2>&1 
 # IF ERROR: WORKS IN BASH, not tcsh
+# ---
+only stdout:
+command > out.txt
 
 
 Append text to file(s):
@@ -508,6 +507,17 @@ mv abcdefg{999,}hijklmnopq.txt
 for file in *report3.*; do mv $file ${file/report3/litSurvey}; done
 
 
+Replace string in multiple files:
+find /path -type f -exec sed -e 's/find/replace/g' -i.bak '{}' +
+# find and replace are the find and replace strings
+# great syntax explanation: bit.ly/VFPO2h
+# ---
+replace with multiple lines:
+# i.e how to do newline with sed i.e. regex
+echo "a,b" | sed -e $'s/,/\\\n/g'
+# note 's/,/\\n/g' works as well somehow...
+
+
 Regex:
 # wildcards are different to those in bash
 # http://www.grymoire.com/unix/Regular.html
@@ -731,3 +741,21 @@ crontab -l
 your serious tweak:
 # you have created /etc/cron.allow with 'alex' inside 
 # bit.ly/1pDhXkW
+
+
+Debug binary execution:
+# strace -o output.txt yourbinary
+# this gives all system calls made
+
+
+Unix system calls:
+#
+brk, sbrk
+# memory mgmt syscalls to control amount of mem allocated to data
+# segment of the process. way for user process to request additional
+# memory.
+stat, lstat
+# return file attributes about an inode. if arg is a link, lstat
+# returns attributes of the link itself.
+mmap
+# maps a file or device onto memory.

@@ -507,6 +507,17 @@ mv abcdefg{999,}hijklmnopq.txt
 for file in *report3.*; do mv $file ${file/report3/litSurvey}; done
 
 
+Replace string in multiple files:
+find /path -type f -exec sed -e 's/find/replace/g' -i.bak '{}' +
+# find and replace are the find and replace strings
+# great syntax explanation: bit.ly/VFPO2h
+# ---
+replace with multiple lines:
+# i.e how to do newline with sed i.e. regex
+echo "a,b" | sed -e $'s/,/\\\n/g'
+# note 's/,/\\n/g' works as well somehow...
+
+
 Regex:
 # wildcards are different to those in bash
 # http://www.grymoire.com/unix/Regular.html

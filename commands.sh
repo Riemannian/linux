@@ -39,8 +39,11 @@ git checkout commit_id -- filename
 Git merge certain files:
 
 
+Create link:
+ln -s <src> <linkname>
+# hard link
+ln <src> <linkname>
 
-Create hard link:
 
 Download from command line:
 wget download_link
@@ -113,12 +116,6 @@ Delete all files except:
 find /path/to/dir \! "text" -print0 | xargs --null rm
 # what is -print0 for?
 # what is xargs --null for?
-
-
-Create symlink:
-ln -s <dest> <linkname>
-# hard link
-ln <dst> <linkname>
 
 
 Diff between two files:
@@ -220,14 +217,18 @@ export PATH=$PATH:/path/to/dir1:/path/to/dir2
 
 How much space:
 # used and available on entire disk:
-df -h                #-h is for human readable form
+df -kh path/to/dir
+# -k for specific dir, -h for human readable
+# ---
 # used in current dir:
 du -h
 du -sh *
 # used in specific dir:
 du -s -h path/to/dir  
 du -h path/to/dir     # recursive
-
+#---
+ncdu
+# awesome visual interactive!
 
 Extract archives:
 # tar.gz, .tgz:

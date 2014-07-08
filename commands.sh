@@ -1,3 +1,5 @@
+Would be better to have 2 font colours, for code, for title
+
 Which shell am I using:
 echo $SHELL
 
@@ -113,7 +115,8 @@ grep "word1\|word2\|word3" /path/to/files
 
 
 Delete all files except:
-find /path/to/dir \! "text" -print0 | xargs --null rm
+find path -type f -not -name 'EXPR' | xargs rm
+# if you don't specify "-type f" find will also list directories
 # what is -print0 for?
 # what is xargs --null for?
 
@@ -149,6 +152,13 @@ ls -l dir | grep ^d | wc -l
 ls -l dir | grep ^l | wc -l
 
 
+Other users on machine:
+# see who they are
+who
+# ---
+# chat to one of them
+write username
+# then wait, a '>' will appear inviting you to send text
 
 
 What is my local ssh address:
@@ -330,23 +340,64 @@ less /proc/cpuinfo
 # graphic06: 
 
 
-Check whether a package is installed:
+Packages:
+# check if package_name exists:
+apt-cache search package_name
+# no output iif it doesn't
+AWESOME:
+# search package by keyword
+apt-cache search 'keyword'
+# eg apt-cache search 'glog'
+# ---
+# check if installed:
 dpkg -s package_name
-
-Uninstall/remove package:
+# ---
+# install from command line
+sudo dpkg -i package.deb
+# manual, backend equivalent of apt-get
+# ---
+# uninstall/remove:
 sudo apt-get remove package_name
-#remove package and all configuration files:
+# ---
+# remove along with config files:
 sudo apt-get --purge remove package_name
-
-
-Install package without root priviledges without sudo:
+# ---
+# install without sudo:
 dpkg -i --force-not-root --root=$HOME package.deb
-# better to have --root=$HOME/local instead?
-# ---
+# better to have --root=$HOME/.local instead?
 # alternatively, use schroot - apparently involved: bit.ly/1ksYliJ
-# ---
-# the way you did it with c++ boost:
+# alternatively, like for c++ boost:
 ./b2 install --prefix=$HOME
+# ---
+i386: NEVER!
+# aka x86 aka IA-32
+# 32bit vs 64bit edition of ubuntu
+# the i386 was a 32bit Intel microprocessor
+# binaries that run on it are said to run on
+amd64: ALWAYS!
+# aka x86_64 aka x64
+# paradox: x86 is less bits than x64!
+# an extension of the x86 instruction set
+# supports longer memory addresses 
+# ---
+-dbg vs -dev vs -doc 
+# bit.ly/1tjAOWt
+#
+# no suffix but with numbers eg 1.0.0:
+# contains version 1.0.0 of the dynamic library
+# this is what programs linked against the package/library need to
+# run
+# version number important in case versions not backward-
+# compatible and you have programs running on earlier version
+# 
+# dev:
+# contains the files that you need if you want to compile a
+# program that links against the package. There are C header files (*.h), libraries for linking (*.a, *.so), and a few assorted files.
+# probably much heavier than compiled lib!
+# 
+# doc:
+# documentation for the package. useful if you want to write a
+# program that uses the library.
 
 
 Install tar.gz tar.bz2 file:
@@ -355,8 +406,6 @@ Install tar.gz tar.bz2 file:
 
 Install package from command line:
 # cd to directory containing .deb file
-sudo spkg -i that_package.deb
-
 
 
 Solve unmet dependencies:
@@ -369,10 +418,8 @@ http://ubuntuforums.org/showthread.php?t=1986644
 http://www.bitsbythepound.com/installing-wink-on-64-bit-ubuntu-210.html
 
 
-install .deb file, ie a package:
+Install .deb file, ie a package:
 sudo dpkg -i package_filename
-#dpkg is the manual, backend equivalent of apt-get
-#dpkg -i is eq to apt-get install
 
 
 Where are package configuration files stored:
@@ -627,15 +674,47 @@ save source install files under:
 # Gcc which version:
 gcc -v
 
-#Caffe:
-#which version of CUDA
+# Caffe:
+# ---
+# which version of CUDA
 nvcc --version
-#othw cat CUDA_SDK/gpu_sdk/doc/CUDA_SDK_Release_Notes.txt
-#othw /usr/local/cuda then tab-tab to see which ones
-#assume BLAS is installed
-#which version of openCV
+# othw cat CUDA_SDK/gpu_sdk/doc/CUDA_SDK_Release_Notes.txt
+# othw /usr/local/cuda then tab-tab to see which ones
+# ---
+# BLAS
+# assume installed
+# ---
+# OpenCV
+# which version:
 pkg-config --modversion opencv
-#which version of boost: cf pipe-classification/caffe/install/
+# ---
+# C++ Boost 1.55
+# which version of boost: cf pipe-classification/caffe/install/
+# download:
+cd /data/ad6813
+mkdir boost
+cd boost
+wget -O boost_1_55_0.tar.gz
+tar zxvf boost_1_55_0.tar.gz
+cd boost_1_55_0
+# install without sudo:
+./b2 install --prefix=/data/ad6813/boost
+# add path environment variables
+echo "export BOOST_ROOT=/data/ad6813/boost"
+# ---
+# Other
+# page says: glog, gflags, protobuf, leveldb, snappy, hdf5
+cd /data/ad6813
+for term in glog gflags protobuf leveldb snappy hdf5; do apt-cache search $term; done > out.txt
+# assume the python associated lib is required every time
+for package in python-gflags protobuf leveldb python-snappy h5py;  do pip install --install-option="--prefix=$HOME/.local" $package >> install.out; done
+# still need to install glogg
+cd /data/ad6813
+mkdir glogg
+cd glogg
+apt-get download glogg
+dpkg -i --force-not-root --root:$HOME/.local glogg_0.9.1-1_amd64.deb
+
 #which version of numpy
 numpy.version.version
 

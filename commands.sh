@@ -20,28 +20,9 @@ scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 # pipe scp:
 # bit.ly/1kzp8ZY
 # ---
-Git remove branch:
-git branch -d branchname
-
-Git branch from commit:
-git branch branch_name commit_id
-
-Git switch from https to ssh:
-git remote set-url origin git@github.com:HoldenCaulfieldRye/repo_name.git
-
-Git when file deleted:
-git log -- [file_path]
-
-Git checkout back to head:
-git checkout master
-
-Git checkout a single file:
-git checkout commit_id -- filename
-
-Git merge certain files:
 
 
-Create link:
+Create symlink symbolic link:
 ln -s <src> <linkname>
 # hard link
 ln <src> <linkname>
@@ -84,21 +65,33 @@ locate 'file_name_beg*'
 
 
 Locate file with find:
-#https:#help.ubuntu.com/community/find
-#looks in all subdirs too:
+# https:#help.ubuntu.com/community/find
+# looks in all subdirs too:
 find $HOME -name "text"
-#to separate stdout from stderr (stdout to file):
+# to separate stdout from stderr (stdout to file):
 find -name "text" > temp.txt
-#case insensitive:
+# case insensitive:
 find -iname "text"
-#regex match:
-find -regex 
+# in list of dirs piped from output of other command:
+find $(other_command) -name "filename" > find.out
+
+
+Remove whitespace in all files:
+IFS="\n"
+for file in *;
+do
+    mv "$file" "${file//[[:space:]]}"
+done
 
 
 
 Locate text within files:
+#
+GREP USES REGEX so different wildcards apply
 # to look in whole filesystem:
-DONT PUT * WILDCARDS IN TEXT TO SEARCH! # we know it's a substring
+DONT PUT * WILDCARDS IN TEXT TO SEARCH!
+# because grep looks up substrings by default
+# ---
 grep "text" /*
 # to look here:
 grep "text" .
@@ -115,10 +108,51 @@ grep "word1\|word2\|word3" /path/to/files
 
 
 Delete all files except:
-find path -type f -not -name 'EXPR' | xargs rm
-# if you don't specify "-type f" find will also list directories
-# what is -print0 for?
-# what is xargs --null for?
+ls | grep -v 'file-to-keep' | xargs rm
+# if you forget -v you're fucked!
+
+
+Git:
+# remove branch:
+git branch -d branchname
+# branch from commit:
+git branch branch_name commit_id
+# switch from https to ssh:
+git remote set-url origin git@github.com:HoldenCaulfieldRye/repo_name.git
+# find out when file deleted:
+git log -- [file_path]
+# checkout back to head:
+git checkout master
+# checkout a single file:
+git checkout commit_id -- filename
+# ---
+# git clone no history, only tip of branch
+git clone --depth=1 --branch <branch_name> git://github.com/<repo_name>.git
+# ---
+# git reset 
+# ---
+# Remove objects too heavy
+# bit.ly/1xSIMEG
+# git clone downloads entire history of project. bad if someone
+# at some point added then deleted a single huge file.
+# warning! technique below can be destrcutive to other contributors
+# because rewrites entire commit history.
+git count-objects -v
+# size-pack is the size for your packfiles in KB
+# if it's in the MBs, there should be a big stupid file.
+git verify-pack -v .git/objects/pack/* | sort -k 3 -n | tail -10
+# you will get the biggest blobs (in bytes)
+# to find what file is associated with a blob:
+git rev-list --objects --all | grep commit_hash_substring
+# to find what commits are associated with the file:
+git log --pretty=oneline --branches -- <the_file>
+# rewrite commits downstream from latest one (lowest on list)
+# CAREFUL! maybe one commit downsized that file, maybe you want to
+# keep it?
+git filter-branch --index-filter \
+    'git rm --cached --ignore-unmatch <the_file>' -- <commit-hash-beg>^..
+# done!
+
 
 
 Diff between two files:
@@ -190,7 +224,44 @@ What shell am I using:
 echo $SHELL
 
 
-Redirect stderr, stdout to file AND print stderr, stdout to console:
+Redirecting:
+# stderr and stdout to file
+command >> filename 2>&1
+# append stdout to filename, but stderr is redirected to stdout,
+# so both append to filename
+# ---
+# WARNING! unexpected:
+command 2>&1 >> filename
+# stdout gets written to file only, not stderr - for some reason
+# ---
+# redirect sterr to one file, stdout to another
+command 2 >> command.err 1 >> command.out
+# ---
+# bit.ly/1mzYhxb
+# there are always 3 files: open, std, stdout
+# each file gets a file descriptor: 0,1,2 for open,stdout,stderr
+# ---
+# redirect stdout to a file:
+> filename
+>> filename # to append
+# ---
+# redirect stdout:
+1 > filename
+1 >> filename # to append
+# so same as without the 1?
+# ---
+# redirect only stderr:
+2 > filename
+2 >> filename # to append
+# ---
+# both stdout and stderr 
+& > filename
+# ---
+# redirect stderr to stdout
+2>&1
+
+
+stderr, stdout to file AND print stderr, stdout to console:
 do_something 2>&1 | tee -a some_file
 # don't care about console, just everything to file:
 command >> output.txt 2>&1 
@@ -214,6 +285,32 @@ done
 echo 'task goes here' | cat - todo.txt > temp && mv temp todo.txt
 # interpret syntax: cf comment bit.ly/1wOhEqR 
     
+
+Makefile:
+# tutorial: bit.ly/1lWm4Dh
+# ---
+Modify where to install:
+# if configure or b2 script exists
+# this will create a makefile suited to
+# your computer
+./configure --prefix=$HOME/.local --exec-prefix=$HOME/.local
+make && make install
+#
+./b2 --prefix=$HOME/.local --exec-prefix=$HOME/.local
+# is b2 for build? so this applied to build scripts too?
+# I think build script combines configure and make
+# ---
+usr/bin/ld: cannot find -l<library>
+
+
+Filesystem:
+#
+bin     # binary, machine code, executable files
+include # header files, function definitions
+lib     # .so (dyn), .a (stat), .pyc bytecode ie function defs
+share   # not sure, doesn't seem to be code
+
+
 
 Environment variables:
 #what is PATH set to:
@@ -257,6 +354,11 @@ Create archive:
 zip zipfilename file1 file2 fil3
 
 
+Emacs:
+# TRAMP
+C-x C-f /ssh:username@hostname:
+# piped ssh
+C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:ad6813@graphic06.doc.ic.ac.uk:
 add alias:
 alias emacs="emacs23"
 #add that to your ~/.cshrc file
@@ -268,6 +370,11 @@ ps aux
 ps
 # all processes containing substrings:
 ps auwxx | grep <substring of top attribute> | grep <other substring of top attribute>
+# list in descending order of values of 3rd column
+# bit.ly/1mfTqSk
+ps aux | sort -k 3 -n # doesn't work for some reason
+
+
 
 Kill process:
 kill <PID>
@@ -341,6 +448,12 @@ less /proc/cpuinfo
 
 
 Packages:
+# check if package installed:
+aptitude search '^package_name$'
+# where package is:
+dpkg -L <package_name>
+# locations of all the files installed as part of the package
+# ---
 # check if package_name exists:
 apt-cache search package_name
 # no output iif it doesn't
@@ -368,6 +481,9 @@ dpkg -i --force-not-root --root=$HOME package.deb
 # alternatively, use schroot - apparently involved: bit.ly/1ksYliJ
 # alternatively, like for c++ boost:
 ./b2 install --prefix=$HOME
+# alternatively, like for libgoogle-glog
+./configure --prefix=$HOME/.local --exec-prefix=$HOME/.local
+make && make install
 # ---
 i386: NEVER!
 # aka x86 aka IA-32
@@ -484,6 +600,26 @@ advanced packaging tool
 
 What does ppa stand for:
 #personal package archive
+
+
+Virtual Environment:
+# bit.ly/1w0Jz3B
+# an isolated working copy of python to work with different library
+# versions only for a specific project
+# ---
+# create venv:
+virtualenv path/to/venv
+# ---
+# (re)enter venv:
+source path/to/venv/bin/activate
+# ---
+# (re)leave venv:
+deactivate
+# ---
+# delete venv:
+# delete the venv folder
+# ---
+
 
 
 view processor activity:
@@ -674,51 +810,6 @@ save source install files under:
 # Gcc which version:
 gcc -v
 
-# Caffe:
-# ---
-# which version of CUDA
-nvcc --version
-# othw cat CUDA_SDK/gpu_sdk/doc/CUDA_SDK_Release_Notes.txt
-# othw /usr/local/cuda then tab-tab to see which ones
-# ---
-# BLAS
-# assume installed
-# ---
-# OpenCV
-# which version:
-pkg-config --modversion opencv
-# ---
-# C++ Boost 1.55
-# which version of boost: cf pipe-classification/caffe/install/
-# download:
-cd /data/ad6813
-mkdir boost
-cd boost
-wget -O boost_1_55_0.tar.gz
-tar zxvf boost_1_55_0.tar.gz
-cd boost_1_55_0
-# install without sudo:
-./b2 install --prefix=/data/ad6813/boost
-# add path environment variables
-echo "export BOOST_ROOT=/data/ad6813/boost"
-# ---
-# Other
-# page says: glog, gflags, protobuf, leveldb, snappy, hdf5
-cd /data/ad6813
-for term in glog gflags protobuf leveldb snappy hdf5; do apt-cache search $term; done > out.txt
-# assume the python associated lib is required every time
-for package in python-gflags protobuf leveldb python-snappy h5py;  do pip install --install-option="--prefix=$HOME/.local" $package >> install.out; done
-# still need to install glogg
-cd /data/ad6813
-mkdir glogg
-cd glogg
-apt-get download glogg
-dpkg -i --force-not-root --root:$HOME/.local glogg_0.9.1-1_amd64.deb
-
-#which version of numpy
-numpy.version.version
-
-
 
 Python:
 
@@ -735,8 +826,8 @@ python setup.py install --prefix=~/.local
 easy_install --prefix=$HOME/.local package_name
 # or
 pip install --install-option="--prefix=$HOME/.local" package_name
-# http://bit.ly/SjzKAU
-# http://bit.ly/SjzJNb
+# bit.ly/SjzKAU
+# bit.ly/SjzJNb
 # ---
 # upgrade a library in /usr/lib without sudo:
 pip install --prefix=${HOME} six; export PYTHONPATH=$PYTHONPATH:/home/yourusername/lib/python2.6/site-packages
@@ -767,6 +858,125 @@ json.dump(dict, open('dict.txt','w'))
 
 Python pretty print list:
 print '%s' % ', '.join(map(str, mylist))
+
+
+
+# Caffe:
+# WARNING: without sudo, need a shit ton of space eg if Cython not
+# installed on system
+# currently, caffe is installed on graphic06 under /data
+# ---
+cd /data/ad6813
+git clone --depth=1 --branch master git://github.com/BVLC/caffe.git
+# ---
+# which version of CUDA
+nvcc --version
+# othw cat CUDA_SDK/gpu_sdk/doc/CUDA_SDK_Release_Notes.txt
+# othw /usr/local/cuda then tab-tab to see which ones
+# ---
+# BLAS
+# assume installed
+# ---
+# OpenCV
+# which version:
+pkg-config --modversion opencv
+# ---
+# C++ Boost 1.55
+# which version of boost: cf pipe-classification/caffe/install/
+# download:
+cd /data/ad6813
+mkdir boost
+cd boost
+wget -O boost_1_55_0.tar.gz
+tar zxvf boost_1_55_0.tar.gz
+cd boost_1_55_0
+# install without sudo:
+./b2 install --prefix=$HOME/.local
+# add path environment variables
+echo "export BOOST_ROOT=$HOME/.local"
+# ---
+# Other
+# try skipping this, pip install -r caffe/python/requirements.txt
+# might do the trick
+#
+# page says: glog, gflags, protobuf, leveldb, snappy, hdf5
+cd /data/ad6813
+for term in glog gflags protobuf leveldb snappy hdf5; do apt-cache search $term; done > out.txt
+# assume the python associated lib is required every time
+for package in python-gflags protobuf leveldb python-snappy h5py;  do pip install --install-option="--prefix=$HOME/.local" $package >> install.out; done
+# ---
+# Numpy >= 1.7
+# which version of numpy
+numpy.version.version
+# ---
+# Boost-provided boost.python
+# assume installed
+# ---
+# other python dependencies
+cd ~/Git/pipe-classification/
+rm -rf caffe
+git clone https://github.com/BVLC/caffe
+cd caffe/python
+pip install --install-option="--prefix=$HOME/.local" -r requirements.txt
+# ImportError: You need `six` version 1.3 or later.
+# struggling to upgrade a lib in /usr/
+# instead, work inside a virtual environment
+# bit.ly/1w0Jz3B
+# work inside virtualenv but making use of all possible system libs
+# to optimise space
+virtualenv --system-site-packages venv
+source venv/bin/activate
+# find out which libraries from requirements.txt need installing/upgrading, and put them in requirements_min.txt
+pip install -r requirements_min.txt
+# ---
+# libgoogle-glog
+wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+tar zxvf glog-0.3.3.tar.gz
+rm glog-0.3.3.tar.gz
+./configure --prefix=/data/ad6813/glog --exec-prefix=/data/ad6813/glog
+make && make install
+# ---
+# Compile!
+cp Makefile.config.example Makefile.config
+# Adjust Makefile.config: 
+# (like in ~/Git/pipe-classification/caffe/Makefile.config)
+make all
+make test
+make runtest
+# ---
+lib, src, test, tools, examples
+# are all in caffe/build.
+# should be in ~/.local? change Makefile.config , build 
+DONE!
+# ---
+# runtest
+# executes $TEST_BIN_DIR/test_all.testbin which is unreadable
+# runtest can't find libglog.so.0 but it's in ~/.local/lib
+# which env var hasn't been set properly?
+# LIBRARY_DIRS in Makefile.config has it
+# maybe we need to set a special google-glog flag?
+grep -r "GLOG" . > grep_GLOG.out
+# candidates:
+# LIBGLOG (as in glog-0.3.3/src/demangle_unittest.sh)
+# GOOGLE_GLOG_DLL_DECL (probs not) 
+# first, see if changing build to .local helps
+# ---
+make clean
+cp -r build ~/.local/caffe_build
+# (Makefile.config has build_dir changed to ~/.local/caffe_build
+make all
+make test
+make runtest
+# still same error, so reverting to previous setup
+# maybe because test files are precompiled, so doesn't take the
+# glog lib path specified in Makefile.config into account
+# ---
+# python wrappers
+make pycaffe
+# copy them to repo, might be night to comment them etc
+cp -r python/caffe/* ~/Git/pipe-classification/caffe/
+# 
+
 
 
 LaTeX:

@@ -933,8 +933,10 @@ pip install -r requirements_min.txt
 wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
 tar zxvf glog-0.3.3.tar.gz
 rm glog-0.3.3.tar.gz
-./configure --prefix=/data/ad6813/glog --exec-prefix=/data/ad6813/glog
+./configure --prefix=$HOME/.local --exec-prefix=$HOME/.local
 make && make install
+# trouble finding libglog.so.0?
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/homes/ad6813/.local/lib
 # ---
 # Compile!
 cp Makefile.config.example Makefile.config

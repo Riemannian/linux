@@ -60,3 +60,56 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 From github.com:HoldenCaulfieldRye/linux
  * branch            master     -> FETCH_HEAD
 Already up-to-date.
+[master 6a51962] auto-commit
+ 51 files changed, 47926 insertions(+), 79 deletions(-)
+ rename emacs/{emacs_config => emacs_config.el} (96%)
+ create mode 100644 emacs/tramp-2.2.10/.dir-locals.el
+ create mode 100644 emacs/tramp-2.2.10/COPYING
+ create mode 100644 emacs/tramp-2.2.10/ChangeLog
+ create mode 100644 emacs/tramp-2.2.10/INSTALL
+ create mode 100644 emacs/tramp-2.2.10/Makefile.in
+ create mode 100644 emacs/tramp-2.2.10/README
+ create mode 100644 emacs/tramp-2.2.10/README-GIT
+ create mode 100644 emacs/tramp-2.2.10/aclocal.m4
+ create mode 100755 emacs/tramp-2.2.10/config.status
+ create mode 100755 emacs/tramp-2.2.10/configure
+ create mode 100644 emacs/tramp-2.2.10/configure.ac
+ create mode 100644 emacs/tramp-2.2.10/contrib/ChangeLog
+ create mode 100644 emacs/tramp-2.2.10/contrib/Makefile.in
+ create mode 100644 emacs/tramp-2.2.10/contrib/README
+ create mode 100644 emacs/tramp-2.2.10/contrib/format-spec.el
+ create mode 100644 emacs/tramp-2.2.10/contrib/password.el
+ create mode 100755 emacs/tramp-2.2.10/contrib/socks.el
+ create mode 100644 emacs/tramp-2.2.10/contrib/tramp.spec
+ create mode 100755 emacs/tramp-2.2.10/download.sh
+ create mode 100644 emacs/tramp-2.2.10/lisp/ChangeLog
+ create mode 100644 emacs/tramp-2.2.10/lisp/Makefile.in
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-adb.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-cache.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-cmds.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-compat.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-efs.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-ftp.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-gvfs.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-gw.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-sh.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-smb.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp-uu.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/tramp.el
+ create mode 100644 emacs/tramp-2.2.10/lisp/trampver.el.in
+ create mode 100644 emacs/tramp-2.2.10/test.makefile
+ create mode 100644 emacs/tramp-2.2.10/test/ChangeLog
+ create mode 100644 emacs/tramp-2.2.10/test/Makefile.in
+ create mode 100644 emacs/tramp-2.2.10/test/README
+ create mode 100644 emacs/tramp-2.2.10/test/tramp-tests.el
+ create mode 100644 emacs/tramp-2.2.10/test/tramp-time.el
+ create mode 100644 emacs/tramp-2.2.10/texi/ChangeLog
+ create mode 100644 emacs/tramp-2.2.10/texi/Makefile.in
+ create mode 100644 emacs/tramp-2.2.10/texi/dir_sample
+ create mode 100644 emacs/tramp-2.2.10/texi/doclicense.texi
+ create mode 100644 emacs/tramp-2.2.10/texi/test.texi
+ create mode 100644 emacs/tramp-2.2.10/texi/tramp.texi
+ create mode 100644 emacs/tramp-2.2.10/texi/trampinst.texi
+ create mode 100644 emacs/tramp-2.2.10/texi/trampver.texi.in
+To git@github.com:HoldenCaulfieldRye/linux.git
+   9099dde..6a51962  master -> master

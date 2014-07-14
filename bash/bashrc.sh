@@ -45,23 +45,12 @@ esac
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+# if [ "$color_prompt" = yes ]; then
+#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# else
+#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+# fi
+# unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -112,3 +101,27 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+
+# colorgcc: a wrapper around gcc(1) to ease reading its output by colorizing it
+export CC="colorgcc"
+
+
+# set your shell prompt to use colours
+PS1='\e[30;1m\u@\h: \e[35m\W\e[0m\$ '
+
+alias mendeley="/usr/local/lib/mendeley/mendeleydesktop-1.11-linux-x86_64/bin/mendeleydesktop"
+
+alias wink="/usr/local/lib/wink/wink"
+
+alias ssh-graphic02="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic02.doc.ic.ac.uk"
+
+alias ssh-graphic06="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic06.doc.ic.ac.uk"
+
+alias ssh-graphic09="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic09.doc.ic.ac.uk"
+
+alias ssh-graphic10="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic10.doc.ic.ac.uk"
+
+alias ssh-icl="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk"
+
+alias python="ipython"

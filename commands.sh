@@ -862,8 +862,8 @@ print '%s' % ', '.join(map(str, mylist))
 
 
 # Caffe:
-# WARNING: without sudo, need a shit ton of space eg if Cython not
-# installed on system
+# WARNING: without sudo, need a shit ton of space eg if Cython 
+# not installed on system
 # currently, caffe is installed on graphic06 under /data
 # ---
 cd /data/ad6813

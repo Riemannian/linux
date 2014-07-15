@@ -190,3 +190,136 @@ sudo apt-get install sshpass
 
 # gnuplot - graphs from command line
 sudo apt-get install gnuplot
+
+
+# Caffe:
+# WARNING: without sudo, need a shit ton of space eg if Cython 
+# not installed on system
+# currently, caffe is installed on graphic06 under /data
+# ---
+cd /data/ad6813
+git clone --depth=1 --branch master git://github.com/BVLC/caffe.git
+# ---
+# which version of CUDA
+nvcc --version
+# othw cat CUDA_SDK/gpu_sdk/doc/CUDA_SDK_Release_Notes.txt
+# othw /usr/local/cuda then tab-tab to see which ones
+# ---
+# BLAS
+# assume installed
+# ---
+# OpenCV
+# which version:
+pkg-config --modversion opencv
+# ---
+# C++ Boost 1.55
+# which version of boost: cf pipe-classification/caffe/install/
+# download:
+cd /data/ad6813
+mkdir boost
+cd boost
+wget -O boost_1_55_0.tar.gz
+tar zxvf boost_1_55_0.tar.gz
+cd boost_1_55_0
+# install without sudo:
+./b2 install --prefix=$HOME/.local
+# add path environment variables
+echo "export BOOST_ROOT=$HOME/.local"
+# ---
+# Other
+# try skipping this, pip install -r caffe/python/requirements.txt
+# might do the trick
+#
+# page says: glog, gflags, protobuf, leveldb, snappy, hdf5
+cd /data/ad6813
+for term in glog gflags protobuf leveldb snappy hdf5; do apt-cache search $term; done > out.txt
+# assume the python associated lib is required every time
+for package in python-gflags protobuf leveldb python-snappy h5py;  do pip install --install-option="--prefix=$HOME/.local" $package >> install.out; done
+# ---
+# Numpy >= 1.7
+# which version of numpy
+numpy.version.version
+# ---
+# Boost-provided boost.python
+# assume installed
+# ---
+# other python dependencies
+cd ~/Git/pipe-classification/
+rm -rf caffe
+git clone https://github.com/BVLC/caffe
+cd caffe/python
+pip install --install-option="--prefix=$HOME/.local" -r requirements.txt
+# ImportError: You need `six` version 1.3 or later.
+# struggling to upgrade a lib in /usr/
+# instead, work inside a virtual environment
+# bit.ly/1w0Jz3B
+# work inside virtualenv but making use of all possible system libs
+# to optimise space
+virtualenv --system-site-packages venv
+source venv/bin/activate
+# find out which libraries from requirements.txt need installing/upgrading, and put them in requirements_min.txt
+pip install -r requirements_min.txt
+# ---
+# libgoogle-glog
+wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+tar zxvf glog-0.3.3.tar.gz
+rm glog-0.3.3.tar.gz
+./configure --prefix=$HOME/.local --exec-prefix=$HOME/.local
+make && make install
+# ---
+# path env vars
+export CUDA_DIR=$CUDA_DIR:/usr/local/cuda
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/homes/ad6813/.local/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib
+export PATH=$PATH:/usr/local/cuda/bin
+# ---
+# Compile
+# carry out instructions in /usr/local/cuda/README
+# add following to bashrc:
+if [ -f /usr/local/cuda/setup.sh ]
+  then
+	. /usr/local/cuda/setup.sh
+fi
+# to compile CUDA source code (which caffe has):
+source /usr/local/setup.sh
+# assume CUDA_SDK copied to ~, if not do it.
+# then modify  Makefile in caffe: oh actually, -lcuda
+# never appears anywhere. so proceed:
+cp Makefile.config.example Makefile.config
+# Adjust Makefile.config: 
+# (like in ~/Git/pipe-classification/caffe/Makefile.config)
+make -n all
+make -n test
+make runtest
+# ---
+lib, src, test, tools, examples
+# are all in caffe/build.
+# should be in ~/.local? change Makefile.config , build 
+DONE!
+# ---
+# runtest
+# executes $TEST_BIN_DIR/test_all.testbin which is unreadable
+# runtest can't find libglog.so.0 but it's in ~/.local/lib
+# which env var hasn't been set properly?
+# LIBRARY_DIRS in Makefile.config has it
+# maybe we need to set a special google-glog flag?
+grep -r "GLOG" . > grep_GLOG.out
+# candidates:
+# LIBGLOG (as in glog-0.3.3/src/demangle_unittest.sh)
+# GOOGLE_GLOG_DLL_DECL (probs not) 
+# first, see if changing build to .local helps
+# ---
+make clean
+cp -r build ~/.local/caffe_build
+# (Makefile.config has build_dir changed to ~/.local/caffe_build
+make all
+make test
+make runtest
+# still same error, so reverting to previous setup
+# maybe because test files are precompiled, so doesn't take the
+# glog lib path specified in Makefile.config into account
+# ---
+# python wrappers
+make pycaffe
+# copy them to repo, might be night to comment them etc
+cp -r python/caffe/* ~/Git/pipe-classification/caffe/
+# 

@@ -125,3 +125,6 @@ alias ssh-graphic10="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac
 alias ssh-icl="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk"
 
 alias python="ipython"
+
+emacs ~/Git/linux/commands.sh &
+google-chrome

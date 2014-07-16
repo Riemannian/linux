@@ -204,6 +204,25 @@ git clone --depth=1 --branch master git://github.com/BVLC/caffe.git
 nvcc --version
 # othw cat CUDA_SDK/gpu_sdk/doc/CUDA_SDK_Release_Notes.txt
 # othw /usr/local/cuda then tab-tab to see which ones
+# 
+# delete ~/CUDA_SDK and copy it to /data because don't want to share
+# same CUDA_SDK across all machines since they run different drivers.
+rm -rf ~/CUDA_SDK
+source /usr/local/cuda/setup.sh
+mkdir -p /data/`whoami`/CUDA-SDK
+cd !$
+cp -pr /usr/local/cuda/gpu_sdk/{C,shared} .
+cd shared
+make
+cd ../C/common
+make
+cd ../src/deviceQuery
+# now don't follow exactly the README:
+NVIDIALIBDIR = /data/$(shell whoami)/shared/lib
+# should be:
+/data/$(shell whoami)/CUDA-SDK/shared/lib
+# nvidia driver 337 has a bug, needs to be run as root first
+# that killed you for hours, possibly weeks
 # ---
 # BLAS
 # assume installed
@@ -287,8 +306,8 @@ source /usr/local/setup.sh
 cp Makefile.config.example Makefile.config
 # Adjust Makefile.config: 
 # (like in ~/Git/pipe-classification/caffe/Makefile.config)
-make -n all
-make -n test
+make all
+make test
 make runtest
 # ---
 lib, src, test, tools, examples

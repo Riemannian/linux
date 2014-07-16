@@ -151,7 +151,14 @@ git log --pretty=oneline --branches -- <the_file>
 # keep it?
 git filter-branch --index-filter 'git rm --cached --ignore-unmatch <the_file>' -- <commit-hash-beg>^..
 # done!
+# ---
+# degager tout .git et recommencer
+# recursive
+find -type d -name '.git' -print0 | xargs -0 rm -rf
+git init
+# ---
 
+4683 objects
 
 
 Diff between two files:
@@ -190,7 +197,7 @@ Other users on machine:
 who
 # ---
 # chat to message one of them
-write username
+write user <username>
 # then wait, a '>' will appear inviting you to send text
 
 
@@ -371,8 +378,11 @@ ps
 ps auwxx | grep <substring of top attribute> | grep <other substring of top attribute>
 # list in descending order of values of 3rd column
 # bit.ly/1mfTqSk
-ps aux | sort -k 3 -n # doesn't work for some reason
+ps aux | sort -k 3 -n # doesn't work, cf bit.ly/1oDt75h
 
+
+Sort files:
+du -s * | sort -n | tail -10
 
 
 Kill process:
@@ -695,6 +705,8 @@ for file in *report3.*; do mv $file ${file/report3/litSurvey}; done
 
 
 Replace string in multiple files:
+sed -i 's/clampdet/soilrisk/g' /path/to/dir/*
+# alternative
 find /path -type f -exec sed -e 's/find/replace/g' -i.bak '{}' +
 # find and replace are the find and replace strings
 # great syntax explanation: bit.ly/VFPO2h

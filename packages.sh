@@ -191,6 +191,10 @@ sudo apt-get install sshpass
 # gnuplot - graphs from command line
 sudo apt-get install gnuplot
 
+# screenshot
+sudo apt-get install shutter
+
+
 
 # Caffe:
 # WARNING: without sudo, need a shit ton of space eg if Cython 
@@ -342,3 +346,6 @@ make pycaffe
 # copy them to repo, might be night to comment them etc
 cp -r python/caffe/* ~/Git/pipe-classification/caffe/
 # 
+
+
+

@@ -11,7 +11,7 @@ cp file[wildcards] .       # it's all about the '.'
 # force copy recursively:
 cp -rf target destination_directory
 # if this doesn't work, then your cp is aliased
-# move to another environment (bash, ksh, tcsh) and try again
+# move to another environment (ksh, tcsh) and try again
 # hopefully cp won't be aliased everywhere
 # ---
 # files from local to remote computer via ssh:
@@ -22,8 +22,19 @@ scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 # ---
 
 
+Bash:
+# ---
+not a valid identifier
+# When you use a variable you write its name without $
+# when you use a value of a variable you write $
+# ---
+
+
+
 Create symlink symbolic link:
 ln -s <src> <linkname>
+# many
+for file in *; do ln -s $file ../../temp/$file; done
 # hard link
 ln <src> <linkname>
 
@@ -181,7 +192,7 @@ ls image_[0-9]{.jpg,meta.dat}  # notice no inverted commas!
 ls | grep -v '.txt'
 
 How many files / dirs / symlinks:
-# Number of files 
+# count number of files 
 # files or dirs or symlinks
 ls -l dir | wc -l
 # files only
@@ -394,6 +405,10 @@ killall -9 okular
 
 Disable screensaver:
 gsettings set org.gnome.settings-daemon.plugins.power active false
+
+
+Screenshot:
+shutter
 
 
 Run process in background without interruption even if logout, take 1:
@@ -858,24 +873,37 @@ sys.path.append('dir')
 # permanently:
 export PYTHONPATH=$PYTHONPATH:/my/other/path
 
-Python egg:
+egg:
 # bit.ly/1u4ZizE
 Update egg:
 python setup.py <whichever_args_are_needed>
 
-Python import .so file:
+import .so file:
 # for some reason, not found even when in cwd
 # solution is in this post: http://bit.ly/1jQHz7l
 # bit.ly/1jQKbSS
 
-Python print dict contents to txt file:
+print dict contents to txt file:
 json.dump(dict, open('dict.txt','w'))
+# to load:
+json.load(open('dict.txt','w')) # but unicode string issue
+# ---
+# dumps is more compact
+json.dumps(dict, open('dict.txt','w'))
+# requires loads
+json.loads(open('dict.txt','w')) # but unicode string issue
 
-Python pretty print list:
+pretty print list:
 print '%s' % ', '.join(map(str, mylist))
 
+arg min arg max:
+# indices of max values along given axis
+# by default, flatten array
+a = np.array(...) 
+np.argmax(a, axis=..)
 
-
+numpy array multiple types:
+a = np.array(array, dtype=[('x', float), ('y', int)])
 
 
 

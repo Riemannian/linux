@@ -97,8 +97,9 @@ done
 
 
 Locate text within files:
-#
-GREP USES REGEX so different wildcards apply
+# grep regex:
+ls | grep .jpg^ # ending with .jpg
+ls | grep ^tonight.txt$ # exactly that fname
 # to look in whole filesystem:
 DONT PUT * WILDCARDS IN TEXT TO SEARCH!
 # because grep looks up substrings by default
@@ -719,12 +720,25 @@ mv abcdefg{999,}hijklmnopq.txt
 for file in *report3.*; do mv $file ${file/report3/litSurvey}; done
 
 
-Replace string in multiple files:
-sed -i 's/clampdet/soilrisk/g' /path/to/dir/*
-# alternative
-find /path -type f -exec sed -e 's/find/replace/g' -i.bak '{}' +
-# find and replace are the find and replace strings
-# great syntax explanation: bit.ly/VFPO2h
+sed - replace strings in files:
+# /g       global replacement
+# -i       insert
+# s/../../ substitute
+# -e       combine multiple commands
+# bit.ly/1pNBihh
+multiple files:
+for file in *; do sed -i 's/clampdet/soilrisk/g' $file; done
+# ---
+replace within specific line:
+# eg at l.12
+sed -i file '12s/old/new/'
+# ---
+replace with value of a variable:
+# intuition: concatenate const strings with bash var holding a
+# string val.
+# concatenation automatically occurs just by placing const string
+# and var holding string together
+sed -i file -e 's/old/'$VAR'/'
 # ---
 replace with multiple lines:
 # i.e how to do newline with sed i.e. regex
@@ -842,6 +856,11 @@ gcc -v
 
 
 Python:
+# ---
+!= vs is not:
+# a is not b     in c++ corresponds to    &a !- &b
+# a != b         in c++ corresponds to    a  !=  b
+# a <> b         in c++ corresponds to    a  !=  b
 
 Install any python library:
 # inside the uncompressed directory for the lib, enter:
@@ -903,8 +922,10 @@ a = np.array(...)
 np.argmax(a, axis=..)
 
 numpy array multiple types:
-a = np.array(array, dtype=[('x', float), ('y', int)])
-
+# use 'object' type for strings otherwise fixed length strings will
+# be used as dtype
+a = np.array(array, dtype=[('x',object),('y',int)])
+# bit.ly/1oi23N4
 
 
 LaTeX:

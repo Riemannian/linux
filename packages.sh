@@ -345,7 +345,12 @@ make runtest
 make pycaffe
 # copy them to repo, might be night to comment them etc
 cp -r python/caffe/* ~/Git/pipe-classification/caffe/
-# 
-
+# ---
+# debug troubleshoot
+# during make all:
+/usr/bin/ld: cannot find -lcblas
+/usr/bin/ld: cannot find -latlas
+# solution:
+scp graphic06.doc.ic.ac.uk:/etc/alternatives/lib*las* ~/.local/lib/
 
 

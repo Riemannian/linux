@@ -132,7 +132,7 @@ git branch branch_name commit_id
 # switch from https to ssh:
 git remote set-url origin git@github.com:HoldenCaulfieldRye/repo_name.git
 # find out when file deleted:
-git log -- [file_path]
+git log -- [file_path_from_root]
 # checkout back to head:
 git checkout master
 # checkout a single file:

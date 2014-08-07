@@ -21,7 +21,7 @@ scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 # bit.ly/1kzp8ZY
 # ---
 # preserve symlinks:
-scp -L
+rsync -avz -e ssh /src/dir user@remote.host:dst/dir
 
 
 Bash:

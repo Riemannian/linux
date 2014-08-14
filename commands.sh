@@ -1,5 +1,8 @@
 Would be better to have 2 font colours, for code, for title
 
+Gary sign-in:
+http://1.1.102.1/reg.php
+
 Which shell am I using:
 echo $SHELL
 
@@ -21,7 +24,8 @@ scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 # bit.ly/1kzp8ZY
 # ---
 # preserve symlinks:
-scp -L
+rsync -av path/to/olddirectory/ path/to/newdirectory
+
 
 
 Bash:
@@ -171,7 +175,10 @@ git filter-branch --index-filter 'git rm --cached --ignore-unmatch <the_file>' -
 find -type d -name '.git' -print0 | xargs -0 rm -rf
 git init
 # ---
-
+# git preserve file permissions
+# bit.ly/1nQmDiV
+# bit.ly/1nQmE6i
+# ---
 
 
 Diff between two files:

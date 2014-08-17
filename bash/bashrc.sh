@@ -128,3 +128,4 @@ alias python="ipython"
 
 emacs ~/Git/linux/commands.sh &
 google-chrome
+

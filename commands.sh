@@ -1,8 +1,5 @@
 Would be better to have 2 font colours, for code, for title
 
-Gary sign-in:
-http://1.1.102.1/reg.php
-
 Which shell am I using:
 echo $SHELL
 

@@ -750,6 +750,9 @@ replace with multiple lines:
 # i.e how to do newline with sed i.e. regex
 echo "a,b" | sed -e $'s/,/\\\n/g'
 # note 's/,/\\n/g' works as well somehow...
+# ---
+comment out all couts
+for file in *; do sed -i 's/std::cout/\/\/std::cout/g' $file; done
 
 
 Regex:

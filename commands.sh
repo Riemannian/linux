@@ -118,6 +118,10 @@ grep -r "text" /path/to/directory/
 grep -r --exclude-dir=dirname "text" path
 
 
+split/cut file content into columns and select k-th column:
+cat file | cut -d"<separating pattern>" -f <col_num>
+
+
 Locate multiple words within files:
 grep "word1\|word2\|word3" /path/to/files
 
@@ -125,6 +129,8 @@ grep "word1\|word2\|word3" /path/to/files
 Delete all files except:
 ls | grep -v 'file-to-keep' | xargs rm
 # if you forget -v you're fucked!
+
+
 
 
 Git:
@@ -164,7 +170,7 @@ git log --pretty=oneline --branches -- <the_file>
 # rewrite commits downstream from latest one (lowest on list)
 # CAREFUL! maybe one commit downsized that file, maybe you want to
 # keep it?
-git filter-branch --index-filter 'git rm --cached --ignore-unmatch <the_file>' -- <commit-hash-beg>^..
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch <the_file>' -- <commit-hash-beg>^..
 # done!
 # ---
 # degager tout .git et recommencer
@@ -176,6 +182,8 @@ git init
 # bit.ly/1nQmDiV
 # bit.ly/1nQmE6i
 # ---
+undo git stash:
+git stash pop
 
 
 Diff between two files:
@@ -381,8 +389,8 @@ Emacs:
 # TRAMP
 C-x C-f /ssh:username@hostname:
 # piped ssh
-C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic07.doc.ic.ac.uk:/data/ad6813/caffe/RUN.md
-/ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic07.doc.ic.ac.uk:/data/ad6813/caffe/src/caffe/layers/softmax_bayesian_loss_layer.cpp
+C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/caffe/RUN.md
+/ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/caffe/src/caffe/layers/softmax_bayesian_loss_layer.cpp
 add alias:
 alias emacs="emacs23"
 #add that to your ~/.cshrc file
@@ -751,8 +759,16 @@ replace with multiple lines:
 echo "a,b" | sed -e $'s/,/\\\n/g'
 # note 's/,/\\n/g' works as well somehow...
 # ---
-comment out all couts
+comment out all couts:
 for file in *; do sed -i 's/std::cout/\/\/std::cout/g' $file; done
+# ---
+append to end of line starting with pattern:
+sed -i '/^pattern:/ s/$/ append_text/' file
+# 1st part is pattern to find, 2nd part is std sed
+# substitution using $ for the end of a line
+# ---
+delete line containing:
+sed -i '/pattern/d' file
 
 
 Regex:

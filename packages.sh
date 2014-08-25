@@ -266,23 +266,6 @@ numpy.version.version
 # Boost-provided boost.python
 # assume installed
 # ---
-# other python dependencies
-cd ~/Git/pipe-classification/
-rm -rf caffe
-git clone https://github.com/BVLC/caffe
-cd caffe/python
-pip install --install-option="--prefix=$HOME/.local" -r requirements.txt
-# ImportError: You need `six` version 1.3 or later.
-# struggling to upgrade a lib in /usr/
-# instead, work inside a virtual environment
-# bit.ly/1w0Jz3B
-# work inside virtualenv but making use of all possible system libs
-# to optimise space
-virtualenv --system-site-packages venv
-source venv/bin/activate
-# find out which libraries from requirements.txt need installing/upgrading, and put them in requirements_min.txt
-pip install -r requirements_min.txt
-# ---
 # libgoogle-glog
 wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
 tar zxvf glog-0.3.3.tar.gz
@@ -343,14 +326,26 @@ make runtest
 # ---
 # python wrappers
 make pycaffe
-# copy them to repo, might be night to comment them etc
-cp -r python/caffe/* ~/Git/pipe-classification/caffe/
+# there may be missing libraries
+# on graphic, need to upgrade six, need to use venv
+cd caffe/python
+pip install --install-option="--prefix=$HOME/.local" -r requirements.txt
+# ImportError: You need `six` version 1.3 or later.
+# struggling to upgrade a lib in /usr/
+# instead, work inside a virtual environment
+# bit.ly/1w0Jz3B
+# work inside virtualenv but making use of all possible system libs
+# to optimise space
+virtualenv --system-site-packages venv
+source venv/bin/activate
+# find out which libraries from requirements.txt need installing/upgrading, and put them in requirements_min.txt
+git clone https://github.com/colorgcc/colorgcc ~/Git/colorgcc
+cp ~/Git/colorgcc/colorgccrc.txt ~/.colorgccrc
+for link in g++ gcc cc colorgcc; do ln -s ~/Git/colorgcc/colorgcc.pl venv/bin/$link; done
+for line in $(cat requirements_min.txt); do pip install $line; done
+# call make pycaffe whenever make all:
+sed -i '/^all:/ s/$/ pycaffe/' Makefile
+# compile
+make all
 # ---
-# debug troubleshoot
-# during make all:
-/usr/bin/ld: cannot find -lcblas
-/usr/bin/ld: cannot find -latlas
-# solution:
-scp graphic06.doc.ic.ac.uk:/etc/alternatives/lib*las* ~/.local/lib/
-
 

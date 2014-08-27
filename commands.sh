@@ -140,8 +140,13 @@ git branch -d branchname
 git branch branch_name commit_id
 # switch from https to ssh:
 git remote set-url origin git@github.com:HoldenCaulfieldRye/repo_name.git
+# ---
 # find out when file deleted:
-git log -- [file_path_from_root]
+git log -- [file_path_from_\.git]   # can contain wildcards
+git diff-tree --no-commit-id --name-only -r <commit> # exact fname
+git checkout commit_id^ -- filename # get it back
+# Note! the ^
+# ---
 # checkout back to head:
 git checkout master
 # checkout a single file:
@@ -780,9 +785,10 @@ $ #: end with
 
 
 bash calculator:
-bc <<< (<your_operation>)
+echo "32*12" | bc
+result=$(echo "32*12" | bc)
 # float
-bc -l <<< (<your_operation>)
+bc -l 
 # floating point comparison
 if [ $(echo " $VAR < 4.3" | bc) -eq 1 ]; then echo yes; fi
 
@@ -885,6 +891,10 @@ save source install files under:
 gcc -v
 
 
+open folder GUI:
+nautilus <path>
+
+
 Python:
 # ---
 != vs is not:
@@ -935,12 +945,19 @@ import .so file:
 print dict contents to txt file:
 json.dump(dict, open('dict.txt','w'))
 # to load:
-json.load(open('dict.txt','w')) # but unicode string issue
+json.load(open('dict.txt','r')) # but unicode string issue
 # ---
 # dumps is more compact
 json.dumps(dict, open('dict.txt','w'))
 # requires loads
-json.loads(open('dict.txt','w')) # but unicode string issue
+json.loads(open('dict.txt','r')) # but unicode string issue
+# ---
+# better for string stuff, yaml:
+yaml.dump(dict, open('dict.txt','w'))
+# to load:
+yaml.load(open('dict.txt','r'))
+# ---
+
 
 pretty print list:
 print '%s' % ', '.join(map(str, mylist))
@@ -1024,13 +1041,17 @@ do
     thresh=$(echo "scale=2; $numer/$denom" | bc);
     if [ $(echo " $thresh < 0.5" | bc) -eq 1 ];
     then
-	echo "$thresh threshold" >> read.txt
+	echo "0$thresh threshold" >> read.txt
 	echo "0 flag_val" >> read.txt
     else
-	thresh = $(echo "1 - $thresh" | bc)
-	echo "$thresh threshold" >> read.txt
+	thresh=$(echo "1 - $thresh" | bc)
+	echo "0$thresh threshold" >> read.txt
 	echo "1 flag_val" >> read.txt
     fi;
     cd ..;
 done
+
+
+
+
 

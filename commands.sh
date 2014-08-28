@@ -24,7 +24,6 @@ scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 rsync -av path/to/olddirectory/ path/to/newdirectory
 
 
-
 Bash:
 # ---
 not a valid identifier
@@ -32,6 +31,9 @@ not a valid identifier
 # when you use a value of a variable you write $
 # ---
 
+
+Unix commands to explore data:
+# bit.ly/1lf45Ow
 
 
 Create symlink symbolic link:
@@ -757,7 +759,7 @@ replace with value of a variable:
 # string val.
 # concatenation automatically occurs just by placing const string
 # and var holding string together
-sed -i file -e 's/old/'$VAR'/'
+sed -i file 's/old/'$VAR'/'
 # ---
 replace with multiple lines:
 # i.e how to do newline with sed i.e. regex
@@ -774,6 +776,8 @@ sed -i '/^pattern:/ s/$/ append_text/' file
 # ---
 delete line containing:
 sed -i '/pattern/d' file
+# delete lines 5-10, 12
+sed -i -e '5,10d;12d' file
 
 
 Regex:

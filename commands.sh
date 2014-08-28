@@ -121,7 +121,9 @@ grep -r --exclude-dir=dirname "text" path
 
 
 split/cut file content into columns and select k-th column:
-cat file | cut -d"<separating pattern>" -f <col_num>
+cat file | cut -d"<separating pattern>" -f <col_num>,<col_num>,..
+# caffe
+cat conv1/train_output.log.beg | cut -d" " -f 5,6,7,8,9,10,11,12,13 >> conv1/train_output.log.beg2
 
 
 Locate multiple words within files:
@@ -200,6 +202,13 @@ Diff between two directories:
 diff -arq dir1 dir2
 # recursive
 diff -r dir1 dir2
+
+
+Common between two files:
+comm -12 <(sort file1) <(sort file2)
+# ---
+# more: bit.ly/1tduUFD
+
 
 List files:
 # by date last modified:

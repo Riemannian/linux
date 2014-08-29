@@ -249,3 +249,6 @@ Already up-to-date.
  2 files changed, 14 insertions(+), 2 deletions(-)
 To git@github.com:HoldenCaulfieldRye/linux.git
    adf80e6..e020599  master -> master
+From github.com:HoldenCaulfieldRye/linux
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.

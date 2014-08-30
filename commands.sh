@@ -191,8 +191,17 @@ git init
 # bit.ly/1nQmDiV
 # bit.ly/1nQmE6i
 # ---
-undo git stash:
+Undo git stash:
 git stash pop
+# ---
+Merge in favour of remote or local:
+git merge --strategy-option theirs
+git merge --strategy-option ours
+# if already conflicting:
+# specific file
+git checkout --theirs file
+git checkout --ours file
+# ---
 
 
 Diff between two files:
@@ -832,7 +841,10 @@ Uncomment block:
 Ctrl-U
 # ---
 LaTeX prezi:
-
+# ---
+graphics:
+# bit.ly/VWdwq1
+# ---
 
 
 Connect to postgres database system:

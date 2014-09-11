@@ -6,7 +6,7 @@ echo $SHELL
 
 Copy:
 # copy multiple files here
-cp file[wildcards] .       # it's all about the '.'
+ ficp file[wildcards] .       # it's all about the '.'
 # ---
 # force copy recursively:
 cp -rf target destination_directory
@@ -34,6 +34,13 @@ not a valid identifier
 
 Unix commands to explore data:
 # bit.ly/1lf45Ow
+
+
+
+for dir in train val test; do cd $dir; do mkdir temp; 
+for file in *; do ln -s
+/data/ad6813/pipe-data/Bluebox/raw_data/dump/$file temp/$file; done;
+rm *; mv temp/* . ; rmdir temp; cd ..; done
 
 
 Create symlink symbolic link:
@@ -118,6 +125,14 @@ grep "text" /path/to/directory/*
 grep -r "text" /path/to/directory/
 # to look there except for a directory
 grep -r --exclude-dir=dirname "text" path
+# test if any strings in file
+# strings.txt contains list of them
+if grep -Fxq file strings.txt
+then
+    # ...
+else
+    # ...
+fi
 
 
 split/cut file content into columns and select k-th column:
@@ -407,7 +422,10 @@ unzip file.zip -d destination_folder
 
 
 Create archive:
-zip zipfilename file1 file2 fil3
+# from dir
+tar -cvf name.tar /path/to/directory
+# from files
+tar -cvf name.tar /path/to/file1 /path/to/file2 /path/to/file3
 
 
 Emacs:
@@ -626,6 +644,7 @@ identify filename.jpg
 
 
 Navigate on vim:
+
 
 
 Whats my version of scrapy:

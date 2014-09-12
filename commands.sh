@@ -145,6 +145,14 @@ Locate multiple words within files:
 grep "word1\|word2\|word3" /path/to/files
 
 
+xargs:
+# move found files to known dir
+ls * | grep ".txt" | xargs -I{} cp -I{} /somewhere/else
+# move known file to found dirs
+find -name "dirs" | xargs -I{} cp file.txt {}
+ 
+
+
 Delete all files except:
 ls | grep -v 'file-to-keep' | xargs rm
 # if you forget -v you're fucked!

@@ -57,7 +57,8 @@ wget download_link
 
 FTP commands:
 # connect & save all files in ftp server directory to local directory:
-wget -r ftp://username:password@hostname.com
+wget -qr ftp://username:password@hostname.com
+# -q for quiet
 # connect to server:
 ftp user@ftp.example.com
 # set the mode of file transfer:
@@ -225,6 +226,8 @@ git merge --strategy-option ours
 git checkout --theirs file
 git checkout --ours file
 # ---
+# search for string in git history of specific file
+git log -S'string' -- file
 
 
 Diff between two files:

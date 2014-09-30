@@ -222,11 +222,11 @@ cd ../C/common
 make
 cd ../src/deviceQuery
 # now don't follow exactly the README:
-NVIDIALIBDIR = /data/$(shell whoami)/shared/lib
+NVIDIALIBDIR=/data/$(whoami)/shared/lib
 # should be:
-/data/$(shell whoami)/CUDA-SDK/shared/lib
+/data/$(whoami)/CUDA-SDK/shared/lib
 # nvidia driver 337 has a bug, needs to be run as root first
-# that killed you for hours, possibly weeks
+# that killed you for days, possibly weeks
 # ---
 # BLAS
 # assume installed

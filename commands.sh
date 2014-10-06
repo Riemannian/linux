@@ -228,6 +228,8 @@ git checkout --ours file
 # ---
 # search for string in git history of specific file
 git log -S'string' -- file
+# search for string in git history 
+git log -S'string'
 
 
 Diff between two files:
@@ -1013,7 +1015,6 @@ yaml.dump(dict, open('dict.txt','w'))
 yaml.load(open('dict.txt','r'))
 # ---
 
-
 pretty print list:
 print '%s' % ', '.join(map(str, mylist))
 
@@ -1028,6 +1029,12 @@ numpy array multiple types:
 # be used as dtype
 a = np.array(array, dtype=[('x',object),('y',int)])
 # bit.ly/1oi23N4
+
+run script:
+# bit.ly/1uHRC9D
+cmd = 'chmod +x script.sh'
+subprocess.call(cmd, shell=True)
+# pOpen will spawn a concurrent process I think
 
 
 LaTeX:

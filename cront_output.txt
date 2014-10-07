@@ -390,3 +390,12 @@ To git@github.com:HoldenCaulfieldRye/linux.git
 From github.com:HoldenCaulfieldRye/linux
  * branch            master     -> FETCH_HEAD
 Already up-to-date.
+[master 7f29559] auto-commit
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+To git@github.com:HoldenCaulfieldRye/linux.git
+   cd8d1c4..7f29559  master -> master
+ssh: Could not resolve hostname github.com: Name or service not known
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.

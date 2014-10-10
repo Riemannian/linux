@@ -364,14 +364,6 @@ grep -r "GLOG" . > grep_GLOG.out
 # GOOGLE_GLOG_DLL_DECL (probs not) 
 # first, see if changing build to .local helps
 # ---
-make clean
-cp -r build ~/.local/caffe_build
-# (Makefile.config has build_dir changed to ~/.local/caffe_build
-make all && make test && make runtest
-# still same error, so reverting to previous setup
-# maybe because test files are precompiled, so doesn't take the
-# glog lib path specified in Makefile.config into account
-# ---
 # python wrappers
 make pycaffe
 # there may be missing libraries

@@ -255,6 +255,13 @@ for term in glog leveldb snappy hdf5; do apt-cache search $term; done > out.txt
 # assume the python associated lib is required every time
 for package in python-gflags protobuf leveldb python-snappy h5py;  do pip install --install-option="--prefix=$HOME/.local" $package >> install.out; done
 # ---
+# libgoogle-glog
+wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+tar zxvf glog-0.3.3.tar.gz
+rm glog-0.3.3.tar.gz
+./configure --prefix=$HOME/.local --exec-prefix=$HOME/.local
+make && make install
+# ---
 # (C++) protobufs
 # dpkg -i fails. instead, download source and compile
 cd ~/.local/src
@@ -267,19 +274,20 @@ cd .. && rm -rf protobuf-2.5.0
 # ---
 # gflags
 cd ~/.local/src
-apt-get source libgflags-dev
-./configure --prefix=/homes/ad6813/.local
+wget https://github.com/schuhschuh/gflags/archive/master.zip
+unzip master.zip
+cd gflags-master
+mkdir build && cd build
+export CXXFLAGS="-fPIC" && export CMAKE_INSTALL_PREFIX="/homes/ad6813/.local"
+cmake .. && make VERBOSE=1
+# modify prefix in ~/.local/src/gflags-master/build/cmake_install.cmake from /usr/local/ to /homes/ad6813/.local
 make && make install
-cd ~/.local/include && mkdir gflags && cd gflags
-for file in /homes/ad6813/.local/src/gflags/*.h ; do ln -s $file $(basename $file); done
 # ---
 # leveldb
-cd ~/.local/src
-git clone https://github.com/google/leveldb
-cd leveldb
-make
-cd ~/.local/include && mkdir leveldb && cd leveldb
-for file in /homes/ad6813/.local/src/leveldb/include/leveldb/*.h ; do ln -s $file $(basename $file); done
+apt-get source libleveldb-dev
+rm leveldb*
+# modify prefix in Makefil
+make && make install
 # ---
 # hdf5
 cd ~/.local/src
@@ -290,19 +298,30 @@ make && make install
 mv hdf5-1.8.11/src hdf5
 rm -rf hdf5-1.8.11
 # ---
+# lmdb
+cd ~/.local/src
+mkdir ~/.local/man
+mkdir ~/.local/man1
+git clone git://gitorious.org/mdb/mdb.git
+cd mdb/libraries/liblmdb
+# in ~/.local/src/mdb/libraries/liblmdb/Makefile, update l.26 wih
+# appropriate prefix
+make && make install
+# ---
+# snappy
+cd ~/.local/src
+apt-get source libsnappy-dev
+rm snappy*
+cd snappy-1.1.0
+./configure --prefix=/homes/ad6813/.local
+make && make install
+# ---
 # Numpy >= 1.7
 # which version of numpy
 numpy.version.version
 # ---
 # Boost-provided boost.python
 # assume installed
-# ---
-# libgoogle-glog
-wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
-tar zxvf glog-0.3.3.tar.gz
-rm glog-0.3.3.tar.gz
-./configure --prefix=$HOME/.local --exec-prefix=$HOME/.local
-make && make install
 # ---
 # path env vars
 export CUDA_DIR=$CUDA_DIR:/usr/local/cuda

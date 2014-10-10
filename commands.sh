@@ -253,6 +253,7 @@ ls -lt
 # by file size:
 ls -lh   #-h stands for human readable
 du -sh *
+du -sh * | sort -n | tail -10
 # matching a certain expression
 ls image_[0-9]{.jpg,meta.dat}  # notice no inverted commas!
 # except those matching:

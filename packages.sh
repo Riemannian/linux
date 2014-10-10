@@ -249,15 +249,46 @@ cd boost_1_55_0
 # add path environment variables
 echo "export BOOST_ROOT=$HOME/.local"
 # ---
-# Other
-# try skipping this, pip install -r caffe/python/requirements.txt
-# might do the trick
-#
 # page says: glog, gflags, protobuf, leveldb, snappy, hdf5
 cd /data/ad6813
-for term in glog gflags protobuf leveldb snappy hdf5; do apt-cache search $term; done > out.txt
+for term in glog leveldb snappy hdf5; do apt-cache search $term; done > out.txt
 # assume the python associated lib is required every time
 for package in python-gflags protobuf leveldb python-snappy h5py;  do pip install --install-option="--prefix=$HOME/.local" $package >> install.out; done
+# ---
+# (C++) protobufs
+# dpkg -i fails. instead, download source and compile
+cd ~/.local/src
+apt-get source libprotobuf8 
+cd protobuf-2.5.0
+./configure --prefix=/homes/ad6813/.local
+make && make check && make install
+mv src/google/protobuf ../
+cd .. && rm -rf protobuf-2.5.0
+# ---
+# gflags
+cd ~/.local/src
+apt-get source libgflags-dev
+./configure --prefix=/homes/ad6813/.local
+make && make install
+cd ~/.local/include && mkdir gflags && cd gflags
+for file in /homes/ad6813/.local/src/gflags/*.h ; do ln -s $file $(basename $file); done
+# ---
+# leveldb
+cd ~/.local/src
+git clone https://github.com/google/leveldb
+cd leveldb
+make
+cd ~/.local/include && mkdir leveldb && cd leveldb
+for file in /homes/ad6813/.local/src/leveldb/include/leveldb/*.h ; do ln -s $file $(basename $file); done
+# ---
+# hdf5
+cd ~/.local/src
+apt-get source libhdf5-dev
+cd libhdf5-dev
+./configure --prefix=/homes/ad6813/.local
+make && make install
+mv hdf5-1.8.11/src hdf5
+rm -rf hdf5-1.8.11
 # ---
 # Numpy >= 1.7
 # which version of numpy
@@ -317,9 +348,7 @@ grep -r "GLOG" . > grep_GLOG.out
 make clean
 cp -r build ~/.local/caffe_build
 # (Makefile.config has build_dir changed to ~/.local/caffe_build
-make all
-make test
-make runtest
+make all && make test && make runtest
 # still same error, so reverting to previous setup
 # maybe because test files are precompiled, so doesn't take the
 # glog lib path specified in Makefile.config into account

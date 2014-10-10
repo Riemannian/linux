@@ -416,3 +416,9 @@ To git@github.com:HoldenCaulfieldRye/linux.git
 From github.com:HoldenCaulfieldRye/linux
  * branch            master     -> FETCH_HEAD
 Already up-to-date.
+[master f62e1df] auto-commit
+ 4 files changed, 374 insertions(+), 8 deletions(-)
+ create mode 100644 #packages.sh#
+ create mode 120000 .#packages.sh
+To git@github.com:HoldenCaulfieldRye/linux.git
+   6dacc50..f62e1df  master -> master

@@ -446,7 +446,7 @@ Emacs:
 C-x C-f /ssh:username@hostname:
 # piped ssh
 C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/caffe/RUN.md
-/ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/caffe/src/caffe/layers/softmax_bayesian_loss_layer.cpp
+/ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/caffe/scripts/run_classifier/run_classifier.py
 add alias:
 alias emacs="emacs23"
 #add that to your ~/.cshrc file
@@ -572,13 +572,11 @@ sudo apt-get --purge remove package_name
 # ---
 # install without sudo:
 dpkg -i --force-not-root --root=$HOME package.deb
-# better to have --root=$HOME/.local instead?
-# alternatively, use schroot - apparently involved: bit.ly/1ksYliJ
-# alternatively, like for c++ boost:
-./b2 install --prefix=$HOME
-# alternatively, like for libgoogle-glog
-./configure --prefix=$HOME/.local --exec-prefix=$HOME/.local
-make && make install
+# if fails, instead, download source and compile
+apt-get source package_name
+# then read the README for installation instructions
+# but don't forget to change prefix for config and or make!
+./configure --prefix=$HOME
 # ---
 i386: NEVER!
 # aka x86 aka IA-32
@@ -609,6 +607,7 @@ amd64: ALWAYS!
 # doc:
 # documentation for the package. useful if you want to write a
 # program that uses the library.
+# ---
 
 
 Install tar.gz tar.bz2 file:

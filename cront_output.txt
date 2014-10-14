@@ -422,3 +422,6 @@ Already up-to-date.
  create mode 120000 .#packages.sh
 To git@github.com:HoldenCaulfieldRye/linux.git
    6dacc50..f62e1df  master -> master
+From github.com:HoldenCaulfieldRye/linux
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.

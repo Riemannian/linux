@@ -159,8 +159,6 @@ ls | grep -v 'file-to-keep' | xargs rm
 # if you forget -v you're fucked!
 
 
-
-
 Git:
 # remove branch:
 git branch -d branchname
@@ -170,7 +168,7 @@ git branch branch_name commit_id
 git remote set-url origin git@github.com:HoldenCaulfieldRye/repo_name.git
 # ---
 # find out when file deleted:
-git log -- [file_path_from_\.git]   # can contain wildcards
+git log -- [file_path_from_pwd]   # can contain wildcards
 git diff-tree --no-commit-id --name-only -r <commit> # exact fname
 git checkout commit_id^ -- filename # get it back
 # Note! the ^
@@ -301,7 +299,7 @@ sshfs
 # bit.ly/1kzzg4V
 
 
-Image pixel size:
+Image height width pixel size:
 convert MyJpeg.jpg -print "Size: %wx%h\n" /dev/null
 
 
@@ -447,7 +445,7 @@ Emacs:
 C-x C-f /ssh:username@hostname:
 # piped ssh
 C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/caffe/RUN.md
-/ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/caffe/scripts/run_classifier/run_classifier.py
+/ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic07.doc.ic.ac.uk:/data/ad6813/caffe/scripts/run_classifier/run_classifier.py
 add alias:
 alias emacs="emacs23"
 #add that to your ~/.cshrc file

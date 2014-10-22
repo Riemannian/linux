@@ -182,7 +182,7 @@ git checkout master
 git checkout commit_id -- filename
 # ---
 # git clone no history, only tip of branch
-git clone --depth=1 --branch <branch_name> git://github.com/<repo_name>.git
+git clone --depth=1 --branch master git://github.com/<repo_name>.git
 # ---
 # git reset 
 # ---

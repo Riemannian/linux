@@ -4,6 +4,79 @@ Which shell am I using:
 echo $SHELL
 
 
+sed - replace strings in files:
+# /g       global replacement
+# /d       delete
+# -i       insert
+# s/../../ substitute
+# -e       combine multiple commands
+# bit.ly/1pNBihh
+multiple files:
+for file in *; do sed -i 's/clampdet/soilrisk/g' $file; done
+# ---
+replace within specific line:
+# eg at l.12
+sed -i file '12s/old/new/'
+# ---
+replace with value of a variable:
+# intuition: concatenate const strings with bash var holding a
+# string val.
+# concatenation automatically occurs just by placing const string
+# and var holding string together
+sed -i file 's/old/'$VAR'/'
+# ---
+replace with multiple lines:
+# i.e how to do newline with sed i.e. regex
+echo "a,b" | sed -e $'s/,/\\\n/g'
+# note 's/,/\\n/g' works as well somehow...
+# ---
+comment out all couts:
+for file in *; do sed -i 's/std::cout/\/\/std::cout/g' $file; done
+# ---
+append to end of line starting with pattern:
+sed -i '/^pattern:/ s/$/ append_text/' file
+# 1st part is pattern to find, 2nd part is std sed
+# substitution using $ for the end of a line
+# ---
+delete line containing:
+sed -i '/pattern/d' file
+# delete lines 5-10, 12
+sed -i -e '5,10d;12d' file
+# ---
+replace s1 with s2 in line if it contains pattern
+# bit.ly/1zkmi3L
+sed -i '/pattern/ s/s1/s2/' file
+
+
+Sorted union of a bunch of lines (in a file):
+cat file | sort -u
+
+
+Regex:
+# bit.ly/ZNMgfN
+$ #: end with
+^ #: start with
+\ #: cancel wildcard effect of next char
+. #: match any single char
+* #: match prev char >=0 times
+
+
+
+Append text to file(s):
+# to end of file:
+echo 'text' >> file
+# to beginning of file:
+sed -i 'text' file
+# to beg & end of multiple files
+for file in *.txt; do
+    echo 'text' >> file &&
+    sed -i 'text' file
+done
+# but apparently this one is better:
+echo 'task goes here' | cat - todo.txt > temp && mv temp todo.txt
+# interpret syntax: cf comment bit.ly/1wOhEqR 
+    
+
 Copy:
 # copy multiple files here
  ficp file[wildcards] .       # it's all about the '.'
@@ -357,21 +430,6 @@ only stdout:
 command > out.txt
 
 
-Append text to file(s):
-# to end of file:
-echo 'text' >> file
-# to beginning of file:
-sed -i 'text' file
-# to beg & end of multiple files
-for file in *.txt; do
-    echo 'text' >> file &&
-    sed -i 'text' file
-done
-# but apparently this one is better:
-echo 'task goes here' | cat - todo.txt > temp && mv temp todo.txt
-# interpret syntax: cf comment bit.ly/1wOhEqR 
-    
-
 Makefile:
 # tutorial: bit.ly/1lWm4Dh
 # ---
@@ -501,6 +559,13 @@ nohup #no hang-up
 # ---
 # execute script with nohup
 nohup path/to/script "upload" &
+# ---
+nohup after process has begun:
+# bit.ly/1ovqdpK
+C-z # pause
+bg  # resume in background
+disown -h <job_number> # find job_number with jobs cmd
+
 
 view image:
 mirage <img_name>
@@ -791,52 +856,6 @@ mv abcdefg{999,}hijklmnopq.txt
 # report3 substring: http://bit.ly/1tjywBl
 for file in *report3.*; do mv $file ${file/report3/litSurvey}; done
 
-
-sed - replace strings in files:
-# /g       global replacement
-# -i       insert
-# s/../../ substitute
-# -e       combine multiple commands
-# bit.ly/1pNBihh
-multiple files:
-for file in *; do sed -i 's/clampdet/soilrisk/g' $file; done
-# ---
-replace within specific line:
-# eg at l.12
-sed -i file '12s/old/new/'
-# ---
-replace with value of a variable:
-# intuition: concatenate const strings with bash var holding a
-# string val.
-# concatenation automatically occurs just by placing const string
-# and var holding string together
-sed -i file 's/old/'$VAR'/'
-# ---
-replace with multiple lines:
-# i.e how to do newline with sed i.e. regex
-echo "a,b" | sed -e $'s/,/\\\n/g'
-# note 's/,/\\n/g' works as well somehow...
-# ---
-comment out all couts:
-for file in *; do sed -i 's/std::cout/\/\/std::cout/g' $file; done
-# ---
-append to end of line starting with pattern:
-sed -i '/^pattern:/ s/$/ append_text/' file
-# 1st part is pattern to find, 2nd part is std sed
-# substitution using $ for the end of a line
-# ---
-delete line containing:
-sed -i '/pattern/d' file
-# delete lines 5-10, 12
-sed -i -e '5,10d;12d' file
-
-
-Regex:
-# wildcards are different to those in bash
-# http://www.grymoire.com/unix/Regular.html
-$ #: end with
-^ #: start with
-\ #: cancel wildcard effect of next char
 
 
 bash calculator:

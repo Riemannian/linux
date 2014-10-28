@@ -77,6 +77,16 @@ echo 'task goes here' | cat - todo.txt > temp && mv temp todo.txt
 # interpret syntax: cf comment bit.ly/1wOhEqR 
     
 
+Bash:
+# ---
+not a valid identifier
+# When you use a variable you write its name without $
+# when you use a value of a variable you write $
+# ---
+if/else statement:
+if [ CONDITION ] ; then BLA ; else BLA ; fi
+
+
 Copy:
 # copy multiple files here
  ficp file[wildcards] .       # it's all about the '.'
@@ -97,17 +107,8 @@ scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
 rsync -av path/to/olddirectory/ path/to/newdirectory
 
 
-Bash:
-# ---
-not a valid identifier
-# When you use a variable you write its name without $
-# when you use a value of a variable you write $
-# ---
-
-
 Unix commands to explore data:
 # bit.ly/1lf45Ow
-
 
 
 for dir in train val test; do cd $dir; do mkdir temp; 
@@ -505,7 +506,7 @@ Emacs:
 # TRAMP
 C-x C-f /ssh:username@hostname:
 # piped ssh
-C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic05.doc.ic.ac.uk:/data2/ad6813/caffe/RUN.md
+C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/caffe/RUN.md
 /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic07.doc.ic.ac.uk:/data/ad6813/caffe/scripts/run_classifier/run_classifier.py
 add alias:
 alias emacs="emacs23"
@@ -1055,6 +1056,15 @@ run script:
 cmd = 'chmod +x script.sh'
 subprocess.call(cmd, shell=True)
 # pOpen will spawn a concurrent process I think
+
+raw input number of element from list_:
+# multiple elements from list
+for elem in enumerate(list_): print elem
+choose_ints = [int(elem) for elem in raw_input("\nChoose index numbers from above, separated by ' ': ").split()]
+choose = [list_[i] for i in choose_ints]
+# single element from list
+for elem in enumerate(list_): print elem
+choose = list_[int(raw_input("\nChoose index numbers from above: "))]
 
 
 LaTeX:

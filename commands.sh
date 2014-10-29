@@ -163,15 +163,14 @@ locate 'file_name_beg*'
 
 
 Locate file with find:
-# https:#help.ubuntu.com/community/find
 # looks in all subdirs too:
 find $HOME -name "text"
-# to separate stdout from stderr (stdout to file):
-find -name "text" > temp.txt
 # case insensitive:
 find -iname "text"
 # in list of dirs piped from output of other command:
 find $(other_command) -name "filename" > find.out
+# filename matching multiple options:
+find \( -name \*.jpg -o -name \*.png \)
 
 
 Remove whitespace in all files:

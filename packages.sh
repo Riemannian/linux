@@ -304,6 +304,9 @@ numpy.version.version
 # Boost-provided boost.python
 # assume installed
 # ---
+# cuDNN
+cp ~/cudnn-6.5-linux-R1/cudnn.h $CAFFE/include
+# ---
 # Compile
 # carry out instructions in /usr/local/cuda/README
 # add following to bashrc:

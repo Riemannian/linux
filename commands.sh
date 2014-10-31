@@ -3,7 +3,6 @@ Would be better to have 2 font colours, for code, for title
 Which shell am I using:
 echo $SHELL
 
-
 sed - replace strings in files:
 # /g       global replacement
 # /d       delete
@@ -60,6 +59,9 @@ $ #: end with
 . #: match any single char
 * #: match prev char >=0 times
 
+
+Random shuffle lines in file:
+sort -R file # -R[andom]
 
 
 Append text to file(s):
@@ -132,8 +134,9 @@ wget download_link
 FTP commands:
 # connect & save all files in ftp server directory to local directory:
 wget -qr ftp://username:password@hostname.com
+wget -qr ftp://photostore:ph0t0st0r3@jointmanager.com
 # -q for quiet
-# connect to server:
+# connect to sesorver:
 ftp user@ftp.example.com
 # set the mode of file transfer:
 ascii          # good for txt
@@ -291,6 +294,9 @@ git init
 # ---
 Undo git stash:
 git stash pop
+# ---
+List conflicts
+git diff --name-only --diff-filter=U
 # ---
 Merge in favour of remote or local:
 git merge --strategy-option theirs
@@ -495,7 +501,7 @@ unzip file.zip -d destination_folder
 
 
 Create archive:
-# from dir
+# from dir/ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/caffe/RUN.md
 tar -cvf name.tar /path/to/directory
 # from files
 tar -cvf name.tar /path/to/file1 /path/to/file2 /path/to/file3

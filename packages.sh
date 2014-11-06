@@ -195,6 +195,9 @@ sudo apt-get install gnuplot
 sudo apt-get install shutter
 
 
+# lftp - like for find on ftp server
+sudo apt-get install lftp
+
 
 # Caffe:
 # WARNING: without sudo, need a shit ton of space eg if Cython 
@@ -361,6 +364,19 @@ sed -i '/^all:/ s/$/ pycaffe/' Makefile
 make all
 # ---
 # FINETUNE bit.ly/ZyrdOe
+# ---
+# ---
+installing on nvidia2.ma.ic.ac.uk:
+cd
+scp -r graphic06.doc.ic.ac.uk:/homes/ad6813/.local .
+scp -r graphic06.doc.ic.ac.uk:/homes/ad6813/cudnn-6.5-linux-R1 .
+for file in $(find ~/cudnn-6.5-linux-R1/ -name "*.so*") ; do ln -s $file ~/.local/lib/$(basename $file) ; done
+ln -s ~/cudnn-6.5-linux-R1/cudnn.h ~/.local/include/cudnn.h
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ad6813/.local/lib:/usr/local/cuda-6.5/targets/x86_64-linux/lib:/usr/local/matlab/R2014a/bin/glnxa64:" >> ~/.bashrc
+
+
+to make symlink relative rather than absolute:
+sudo apt-get install symlinks
 
 
 

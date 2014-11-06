@@ -87,6 +87,9 @@ not a valid identifier
 # ---
 if/else statement:
 if [ CONDITION ] ; then BLA ; else BLA ; fi
+# ---
+basename
+$(basename $FILE)
 
 
 Copy:
@@ -99,6 +102,8 @@ cp -rf target destination_directory
 # move to another environment (ksh, tcsh) and try again
 # hopefully cp won't be aliased everywhere
 # ---
+# copy symlink
+cp -av 
 # files from local to remote computer via ssh:
 scp local/path/filename ad6813@shell4.doc.ic.ac.uk:/remote/path
 scp ad6813@shell4.doc.ic.ac.uk:/remote/path/filename local/path
@@ -137,7 +142,12 @@ wget -qr ftp://username:password@hostname.com
 wget -qr ftp://photostore:ph0t0st0r3@jointmanager.com
 # -q for quiet
 # connect to sesorver:
-ftp user@ftp.example.com
+lftp user@ftp.example.com
+lftp photostore@jointmanager.com
+# ---
+# search for file
+lftp user@ftp.example.com
+find . | grep 'fname' 
 # set the mode of file transfer:
 ascii          # good for txt
 binary         # recommended for all non txt: images, archives etc
@@ -214,6 +224,9 @@ fi
 
 split/cut file content into columns and select k-th column:
 cat file | cut -d"<separating pattern>" -f <col_num>,<col_num>,..
+# ---
+# multiple delimiters
+
 # caffe
 cat conv1/train_output.log.beg | cut -d" " -f 5,6,7,8,9,10,11,12,13 >> conv1/train_output.log.beg2
 
@@ -276,7 +289,7 @@ git verify-pack -v .git/objects/pack/* | sort -k 3 -n | tail -10
 # to find what file is associated with a blob:
 git rev-list --objects --all | grep <commit>
 # to find what commits are associated with the file:
-git log --pretty=oneline --branches -- <the_file>
+git log --pretty=oneline --branches -- <file>
 # rewrite commits downstream from latest one (lowest on list)
 # CAREFUL! maybe one commit downsized that file, maybe you want to
 # keep it?

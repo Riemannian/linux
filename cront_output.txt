@@ -501,3 +501,11 @@ To git@github.com:HoldenCaulfieldRye/linux.git
 From github.com:HoldenCaulfieldRye/linux
  * branch            master     -> FETCH_HEAD
 Already up-to-date.
+[master 6102c37] auto-commit
+ 4 files changed, 40 insertions(+), 365 deletions(-)
+ delete mode 100644 #packages.sh#
+To git@github.com:HoldenCaulfieldRye/linux.git
+   9eed338..6102c37  master -> master
+From github.com:HoldenCaulfieldRye/linux
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.

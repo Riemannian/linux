@@ -45,6 +45,9 @@ sed -i -e '5,10d;12d' file
 replace s1 with s2 in line if it contains pattern
 # bit.ly/1zkmi3L
 sed -i '/pattern/ s/s1/s2/' file
+# ---
+# rm 1st 2 chars of all lines
+sed -r 's/^.{2}//'
 
 
 Sorted union of a bunch of lines (in a file):
@@ -256,6 +259,9 @@ Git:
 git branch -d branchname
 # branch from commit:
 git branch branch_name commit_id
+# merge bra into master:
+git checkout master
+git merge bra master
 # switch from https to ssh:
 git remote set-url origin git@github.com:HoldenCaulfieldRye/caffe.git
 # ---
@@ -528,7 +534,7 @@ Emacs:
 # TRAMP
 C-x C-f /ssh:username@hostname:
 # piped ssh
-C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/devCaffe/caffe
+C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/devCaffe/caffe/src/caffe/net.cpp
 add alias:
 alias emacs="emacs23"
 #add that to your ~/.cshrc file

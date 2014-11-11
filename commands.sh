@@ -538,6 +538,7 @@ Emacs:
 C-x C-f /ssh:username@hostname:
 # piped ssh
 C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/devCaffe/caffe/src/caffe/net.cpp
+
 add alias:
 alias emacs="emacs23"
 #add that to your ~/.cshrc file

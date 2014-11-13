@@ -22,9 +22,9 @@
 (global-set-key "\C-xc" 'compile)
 (global-set-key "\C-xt" 'text-mode);
 (global-set-key "\C-xr" 'replace-string);
-(global-set-key "\M-rk" 'kill-rectangle);
-(global-set-key "\M-rw" 'copy-rectangle);
-(global-set-key "\M-ry" 'yank-rectangle);
+(global-set-key "\C-xK" 'kill-rectangle);
+(global-set-key "\C-xW" 'copy-rectangle);
+(global-set-key "\C-xY" 'yank-rectangle);
 (global-set-key "\C-xa" 'repeat-complex-command);
 (global-set-key "\C-xm" 'manual-entry);
 (global-set-key "\C-x\C-u" 'shell);

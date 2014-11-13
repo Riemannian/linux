@@ -536,3 +536,11 @@ To git@github.com:HoldenCaulfieldRye/linux.git
 From github.com:HoldenCaulfieldRye/linux
  * branch            master     -> FETCH_HEAD
 Already up-to-date.
+[master 1685f66] auto-commit
+ 3 files changed, 10 insertions(+), 1 deletion(-)
+ delete mode 120000 .#commands.sh
+To git@github.com:HoldenCaulfieldRye/linux.git
+   4b6c272..1685f66  master -> master
+From github.com:HoldenCaulfieldRye/linux
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.

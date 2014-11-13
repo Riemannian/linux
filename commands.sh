@@ -1,5 +1,37 @@
 Would be better to have 2 font colours, for code, for title
 
+
+# EF internet sign ins
+efc@1	PJG3KI5T
+efc@2	PKJX9WCY
+efc@3	87JWL5AV
+efc@4	EHXD7LLZ
+ef@5	RD5B8LVO
+efc@6	RW4AG73N
+efc@7	EHOROKWU
+efc@8	Y3W9V9LK
+efc@9	CGSRZ4XI
+efc@10	I2W6WIUA
+efc@11	ZOLBMSEK
+efc@12	I13BGO5X
+efc@13	CC5HOD9K
+efc@14	FGODTI7B
+efc@15	HJO7OMGH
+efc@16	6BOBU38G
+efc@17	ZHMPJHQC
+efc@18	2FVS5M4Q
+efc@19	2ZWGVVU6
+efc@20	GKOSZ327
+anthonyhchan@gmail.com 	P9DXTPZE
+david.haber09@imperial.ac.uk 	62HZMKC8
+emmahigham7@googlemail.com 	85JH7WSD
+info@entrepreneurfirst.org.uk	ERPJUQEK
+mason.robert.edwards@gmail.com	UH2J2HT5
+stefany.wfbarker@gmail.com	PKHR3JM2
+stuart.r.1990@gmail.com	XNSKJ7RT
+david.haber09@imperial.ac.uk 	CP8KPX1S
+
+
 Which shell am I using:
 echo $SHELL
 
@@ -45,6 +77,9 @@ sed -i -e '5,10d;12d' file
 replace s1 with s2 in line if it contains pattern
 # bit.ly/1zkmi3L
 sed -i '/pattern/ s/s1/s2/' file
+# ---
+if line contains pattern, replace it entirely with s1
+sed -i '/pattern/ s/.*/s1/' file
 # ---
 # rm 1st 2 chars of all lines
 sed -r 's/^.{2}//'

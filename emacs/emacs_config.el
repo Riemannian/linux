@@ -40,7 +40,7 @@
 (setq make-backup-files 'nil);
 (setq default-major-mode 'text-mode)
 (setq text-mode-hook 'turn-on-auto-fill)
-(set-default-font "-misc-fixed-medium-r-normal--15-140-*-*-c-*-*-1")
+(set-default-font "-misc-fixed-medium-r-normal--13-100-*-*-c-*-*-1")
 (setq auto-mode-alist (cons '("\\.cxx$" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.hpp$" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tex$" . latex-mode) auto-mode-alist))
@@ -124,22 +124,13 @@
 ;; (add-to-list 'load-path "~/.emacs.d/lisp")
 ;; (load "php-mode.el")
 
-
-;; gnuplot script mode
-;; make sure file is visible to emacs (if needed)
-;; (add-to-list 'load-path "/home/alex/Git/gnuplot-mode/gnuplot-mode.el")
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-;; load the file
-(require 'gnuplot-mode)
-;; automatically open files ending with .gp or .gnuplot in gnuplot mode
-(setq auto-mode-alist 
-      (append '(("\\.\\(gp\\|gnuplot\\)$" . gnuplot-mode)) auto-mode-alist)) 
-
-
 ;; TRAMP
 (setq tramp-default-method "ssh")
-
 
 ;; Forces the messages to 0, and kills the *Messages* buffer - thus disabling it on startup.
 (setq-default message-log-max nil)
 (kill-buffer "*Messages*")
+
+;; No automatic new line when writing text
+(setq mode-require-final-newline nil)
+

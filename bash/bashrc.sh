@@ -1,6 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -43,13 +40,13 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=no
 
-# if [ "$color_prompt" = yes ]; then
-#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-# else
-#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-# fi
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
 # unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -65,8 +62,8 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -106,26 +103,32 @@ fi
 # colorgcc: a wrapper around gcc(1) to ease reading its output by colorizing it
 export CC="colorgcc"
 
+# go language for godrive
+export GOROOT=/usr/lib/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-# set your shell prompt to use colours
-PS1='\e[30;1m\u@\h: \e[35m\W\e[0m\$ '
-
-alias mendeley="/usr/local/lib/mendeley/mendeleydesktop-1.11-linux-x86_64/bin/mendeleydesktop"
+alias mendeley="/usr/bin/mendeleydesktop &> /dev/null & disown"
 
 alias wink="/usr/local/lib/wink/wink"
 
-alias ssh-graphic02="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic02.doc.ic.ac.uk"
+alias ssh-graphic02="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic02.doc.ic.ac.uk"
 
-alias ssh-graphic06="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic06.doc.ic.ac.uk"
+alias ssh-graphic06="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic06.doc.ic.ac.uk"
 
-alias ssh-graphic09="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic09.doc.ic.ac.uk"
+alias ssh-graphic07="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic07.doc.ic.ac.uk"
 
-alias ssh-graphic10="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic10.doc.ic.ac.uk"
+alias ssh-graphic09="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic09.doc.ic.ac.uk"
 
-alias ssh-icl="sshpass -p 9northerniighT ssh -A -t ad6813@shell2.doc.ic.ac.uk"
+alias ssh-graphic10="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic10.doc.ic.ac.uk"
+
+alias ssh-icl="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk"
+
+alias ssh-X-icl="sshpass -p 9northerncighT! ssh -A -t -X ad6813@shell2.doc.ic.ac.uk"
 
 alias python="ipython"
 
-emacs ~/Git/linux/commands.sh &
-google-chrome
+alias chromium-browser="chromium-browser &> /dev/null & disown"
+
+alias firefox="firefox &> /dev/null & disown"
 

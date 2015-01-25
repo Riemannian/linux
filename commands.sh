@@ -1,35 +1,11 @@
-Would be better to have 2 font colours, for code, for title
-
-
 # EF internet sign ins
 efc@1	PJG3KI5T
 efc@2	PKJX9WCY
 efc@3	87JWL5AV
 efc@4	EHXD7LLZ
-ef@5	RD5B8LVO
-efc@6	RW4AG73N
-efc@7	EHOROKWU
-efc@8	Y3W9V9LK
-efc@9	CGSRZ4XI
-efc@10	I2W6WIUA
-efc@11	ZOLBMSEK
-efc@12	I13BGO5X
-efc@13	CC5HOD9K
-efc@14	FGODTI7B
-efc@15	HJO7OMGH
-efc@16	6BOBU38G
-efc@17	ZHMPJHQC
-efc@18	2FVS5M4Q
-efc@19	2ZWGVVU6
-efc@20	GKOSZ327
-anthonyhchan@gmail.com 	P9DXTPZE
-david.haber09@imperial.ac.uk 	62HZMKC8
-emmahigham7@googlemail.com 	85JH7WSD
-info@entrepreneurfirst.org.uk	ERPJUQEK
-mason.robert.edwards@gmail.com	UH2J2HT5
-stefany.wfbarker@gmail.com	PKHR3JM2
-stuart.r.1990@gmail.com	XNSKJ7RT
-david.haber09@imperial.ac.uk 	CP8KPX1S
+
+# home raspi
+sshpass -p 'raspberry' ssh pi@192.168.0.12
 
 
 Which shell am I using:
@@ -50,7 +26,7 @@ replace within specific line:
 sed -i file '12s/old/new/'
 # ---
 replace with value of a variable:
-# intuition: concatenate const strings with bash var holding a
+# intuition: concatenate const strings with var holding a
 # string val.
 # concatenation automatically occurs just by placing const string
 # and var holding string together
@@ -132,6 +108,8 @@ $(basename $FILE)
 abspath
 readlink -e <rel_path>
 
+First fname in file not to exist in a list of dirs:
+cat file | cut -d ... | xargs -i find {dir1,dir2} -name {}
 
 Copy:
 # copy multiple files here
@@ -184,7 +162,7 @@ wget -qr ftp://photostore:ph0t0st0r3@jointmanager.com
 # -q for quiet
 # connect to sesorver:
 lftp user@ftp.example.com
-lftp photostore@jointmanager.com
+lftp photostore:photostore1z@jointmanager.com
 # ---
 # search for file
 lftp user@ftp.example.com
@@ -333,6 +311,7 @@ git verify-pack -v .git/objects/pack/* | sort -k 3 -n | tail -10
 # to find what file is associated with a blob:
 git rev-list --objects --all | grep <commit>
 # to find what commits are associated with the file:
+# aka which commits affected a file
 git log --pretty=oneline --branches -- <file>
 # rewrite commits downstream from latest one (lowest on list)
 # CAREFUL! maybe one commit downsized that file, maybe you want to
@@ -572,7 +551,10 @@ Emacs:
 # TRAMP
 C-x C-f /ssh:username@hostname:
 # piped ssh
-C-x C-f /ssh:ad6813@shell2.doc.ic.ac.uk|ssh:graphic06.doc.ic.ac.uk:/data/ad6813/devCaffe/caffe/src/caffe/net.cpp
+/ssh:root@78.129.148.77:/data/ad6813/caffe/RUN.md
+/ssh:ad6813@shell1.doc.ic.ac.uk|ssh:graphic07.doc.ic.ac.uk:/data/ad6813/caffe/RUN.md
+/ssh:adaylac@roitgrund.me:/var/www/machinas/index.html
+
 
 add alias:
 alias emacs="emacs23"
@@ -619,7 +601,9 @@ tmux                            #starts a detached shell
 <hotkey: Ctrl-b d>              #returns from detached shell to home shell
 tmux ls                         #list all detached shells
 tmux a -t <tmux number>         #moves to specified detached shell
-
+# make tmux compatible with X11 forwarding
+# bit.ly/15Gki9o
+# cases that dont work explained in that link
 
 Run process in background without interruption even if logout, take 2:
 nohup #no hang-up
@@ -915,7 +899,7 @@ Avg   # avg latency in milliseconds of packets sent
 # one-off losses are likely due to rate limiting.
 
 
-Rename all files otf:
+Rename multiple files otf:
 # to rename abcdefg999hijklmnopq.txt to abcdefghijklmnopq.txt
 mv abcdefg{999,}hijklmnopq.txt
 # but because you need {old, new}, you can't use other wildcards
@@ -1222,6 +1206,7 @@ else
     echo "0$thresh threshold" >> read.txt
     echo "1 flag_val" >> read.txt
 fi;
+
 
 
 

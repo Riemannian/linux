@@ -1,3 +1,4 @@
-this directory contains emacs lisp configuration files that you should put in the ~/.emacs.d/lisp directory for everything to work smoothly. make that directory if it doesn't exist yet.
-
+this directory contains emacs lisp configuration files that you should put in the 
+~/.emacs.d/lisp 
+directory for everything to work smoothly. make that directory if it doesn't exist yet.
 why not write a script that does this?

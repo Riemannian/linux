@@ -3,7 +3,6 @@
 First of all:
 sudo apt-get update
 
-
 My version of ubuntu:
 Ubuntu 14.04 Trusty Tahr
 #yes, in system settings details it says 13.10
@@ -38,10 +37,7 @@ sudo dpkg -i google-chrome*; sudo apt-get -f install
 
 Hide Unity taskbar:
 via GUI:
-click top-right-hand-corner button
-click System Settings
-click Appearance
-click Behaviour
+System Settings > Appearance > Behaviour >
 Auto-hide the Launcher: ON
 make it slightly more sensitive than default
 
@@ -67,7 +63,7 @@ cp bash/bashrc.sh ~/.bashrc
 
 
 Disable bluetooth on startup:
-didn't work: sudoedit /etc/rc.local, rfkill block bluetooth
+didn\'t work: sudoedit /etc/rc.local, rfkill block bluetooth
 sudo emacs /etc/rc.local
 add: blacklist btusb
 
@@ -80,14 +76,6 @@ Aptitude (used for installing ubuntu packages):
 sudo apt-get install aptitude
 
 
-Okular:
-sudo apt-get install okular
-#would be nice to add ppa, but haven't found one for trusty
-#F7: hide the chunky help bar stuff on the left
-#F6: show awesomely discreet annotations toolbar
-#F3: search (ESC to exit)
-
-
 Toggle brightness:
 #edit GRUB
 sudo emacs /etc/default/grub
@@ -98,7 +86,7 @@ sudo reboot
 
 
 Fortran compiler:
-# needd it for scipy
+# need it for scipy
 sudo apt-get install gfortran
 
 BLAS:
@@ -106,12 +94,18 @@ BLAS:
 sudo apt-get install libblas-dev libatlas-dev liblapack-dev
 
 
+Colorgcc:
+git clone https://github.com/colorgcc/colorgcc ~/Git/colorgcc
+cp ~/Git/colorgcc/colorgccrc.txt ~/.colorgccrc
+for link in g++ gcc cc colorgcc; do sudo ln -s ~/Git/colorgcc/colorgcc.pl /bin/$link; done
+
+
 Python libraries:
-sudo apt-get install python-dev   #must start with this one!
-apt-get install python-pip
-sudo apt-get install python-magic
-sudo apt-get install python-matplotlib
-sudo pip install coverage numpy scipy matplotlib
+sudo apt-get install python-dev   # must start with this one!
+sudo apt-get install python-pip
+pip install python-magic python-matplotlib coverage numpy scipy matplotlib ipython
+sudo pip install -I pil
+sudo apt-get install python-imaging-tk
 
 
 Python scrapy:
@@ -122,11 +116,6 @@ and then add the following to the file, with relevant DISTRO:
 deb http:#archive.scrapy.org/ubuntu DISTRO main
 sudo aptitude update
 sudo apt-get install scrapy-0.22
-
-
-Cuda-convnet (other):
-sudo apt-get install libatlas-base-dev #for cuda-convnet
-sudo apt-get install subversion        #for cuda-convnet
 
 
 # Postgres (open source SQL sicstus-like querying system):
@@ -140,17 +129,8 @@ Host *
   ServerAliveInterval 240
 #then modify permissions on file
 chmod 660 ~/.ssh/config
-# ssh daemon closes connection if it doesn't hear anything
-#from client for a while, this sends regular signals
-
-
-Hipchat (Group Project messaging):
-sudo su
-echo "deb http:#downloads.hipchat.com/linux/apt stable main" > \
-  /etc/apt/sources.list.d/atlassian-hipchat.list
-wget -O - https:#www.hipchat.com/keys/hipchat-linux.key | apt-key add -
-apt-get update
-apt-get install hipchat
+# ssh daemon closes connection if it doesn\'t hear anything
+# from client for a while, this sends regular signals
 
 
 # add greek/french key mappings
@@ -160,8 +140,9 @@ xmodmap extrakeydefs.lst
 
 
 # Mirage light image viewer in PyGTK
-sudo apt-get install mirage
-
+sudo apt-get install 
+# or alternatively geeqie, for toggling through dir
+sudo apt-get install geeqie
 
 # uTorrent
 cd Downloads
@@ -174,12 +155,8 @@ utserver -settingspath /opt/utorrent-server-v3_0/
 sudo apt-get install libssl0.9.8:i386
 
 
-# gimp - image editor
-sudo apt-get install gimp
-
-
-# shutter - snipping tool
-sudo apt-get install shutter
+# image stuff
+sudo apt-get install gimp shutter mirage
 
 
 # sshpass: to alias mundane ssh-ing
@@ -187,16 +164,15 @@ sudo apt-get install sshpass
 # bit.ly/1izdr0J
 # alias alias ssh-graphic02="sshpass -p password ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic02.doc.ic.ac.uk"
 
-
-# gnuplot - graphs from command line
-sudo apt-get install gnuplot
-
-# screenshot
-sudo apt-get install shutter
-
-
 # lftp - like for find on ftp server
 sudo apt-get install lftp
+
+# Go and GoDrive
+sudo apt-get install golang golang-go.tools gccgo-go git mercurial
+go get github.com/rakyll/drive/cmd/drive
+# https://github.com/rakyll/drive for protips
+
+
 
 
 # Caffe:

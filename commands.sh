@@ -1,8 +1,29 @@
+
+perspective, oxford
+sentient.io - grid, huge
+-> get them to vet ie check on us
+
 # EF internet sign ins
 efc@1	PJG3KI5T
 efc@2	PKJX9WCY
 efc@3	87JWL5AV
 efc@4	EHXD7LLZ
+
+# eduroam login
+ad6813@imperial.ac.uk
+9northerncighT!
+
+# tech demo
+cd /data/ad6813/caffe
+./guiDemo.py bestModels
+cd rodeo
+./main.py ../tsnes/logs/solera-pca500-0,8-30.log
+# select ~100 images
+# click 'vew image grid'
+# type new label
+# click 'add new label'
+# click the new 'dashboard' label
+# click 'label all'
 
 # home raspi
 sshpass -p 'raspberry' ssh pi@192.168.0.12
@@ -19,11 +40,13 @@ sed - replace strings in files:
 # -e       combine multiple commands
 # bit.ly/1pNBihh
 multiple files:
-for file in *; do sed -i 's/clampdet/soilrisk/g' $file; done
+for file in *; do sed -i 's/soilrisk/soilrisk/g' $file; done
 # ---
 replace within specific line:
 # eg at l.12
 sed -i file '12s/old/new/'
+# replace entire contents of line:
+sed -i file '12s/.*/new/'
 # ---
 replace with value of a variable:
 # intuition: concatenate const strings with var holding a
@@ -38,7 +61,7 @@ echo "a,b" | sed -e $'s/,/\\\n/g'
 # note 's/,/\\n/g' works as well somehow...
 # ---
 comment out all couts:
-for file in *; do sed -i 's/std::cout/\/\/std::cout/g' $file; done
+for file in *; do sed -i 's///std::cout/\/\///std::cout/g' $file; done
 # ---
 append to end of line starting with pattern:
 sed -i '/^pattern:/ s/$/ append_text/' file
@@ -59,6 +82,47 @@ sed -i '/pattern/ s/.*/s1/' file
 # ---
 # rm 1st 2 chars of all lines
 sed -r 's/^.{2}//'
+# ---
+# print line 34
+sed -n '34p' file
+# betw lines 12 nd 34
+sed -n '12,34p' file
+# print first 20% lines of file
+sed $(echo "$(wc -l < file) / 5" | bc)'q' file
+# print last 80% lines of file
+sed $(echo "4 * $(wc -l < file) / 5" | bc)'q' <(tac file) | tac
+
+
+Awk:
+# merge columns from separate files
+# eg columns 1,2,3 of a 3-column file2 then column 1 of a 3-column file1
+pr -m -t -s\  file1 file2 | gawk '{print $4,$5,$6,$1}'
+# "-s\ " 2 spaces! means use single space separator betw the files
+# ---
+# vlookup col 1 field of file1 in col1 of file2, print that field, its col4 in file1,
+# its col3 in file2, the difference between the latter 2
+awk 'FNR==NR {a[$1]=$4; next} {print $1, a[$1], $3, $3 - a[$1]}' file1 file2 
+# FNR=NR means if file's number row equals aggregate number row
+# next means don't execute the folling {}'s, continue with next line
+# so FNR==NR combined with next meands 1st {} executes only on file1 and 2nd {} only file2
+# with file1 file2 at the end like that, they just append into 1 large file which gets fed
+# line by line into awk
+# ---
+# if else
+awk '{if($2 == 0.0 || $2 == 1.0) {print $1, $3, $4} else {print $0}}' file
+# ---
+# print last field in line
+print $NF 
+# NF: number of fields
+# ---
+# define function
+awk 'function abs(x){return ((x < 0.0) ? -x : x)} {print abs($1)}' file
+# ---
+ 
+
+Comm - for comparing files
+# entries existing in column i of file1 and column j of file2
+comm <(cut -d' ' -f i file1 | sort) <(cut -d' ' -f j | sort file2)
 
 
 Sorted union of a bunch of lines (in a file):
@@ -143,6 +207,10 @@ for file in *; do ln -s
 rm *; mv temp/* . ; rmdir temp; cd ..; done
 
 
+Render webpage remotely protip:
+python -m SimpleHTTPServer
+
+
 Create symlink symbolic link:
 ln -s <src> <linkname>
 # many
@@ -153,6 +221,12 @@ ln <src> <linkname>
 
 Download from command line:
 wget download_link
+
+
+Loop through images in dir:
+eog <1st img> # 
+# or if for some reason want a hack
+while true ; do for img in * ; do eog $img ; done ; done
 
 
 FTP commands:
@@ -169,7 +243,7 @@ lftp user@ftp.example.com
 find . | grep 'fname' 
 # set the mode of file transfer:
 ascii          # good for txt
-binary         # recommended for all non txt: images, archives etc
+binary         # recommended for all non txt files
 # authorised commands:
 ls
 mget           # download multiple files to local dir
@@ -179,7 +253,7 @@ lcd            # change dir locally
 pwd            # print dir path on ftp server
 lpwd           # print local dir path
 #internet file transfer program
-#http://www.cyberciti.biz/faq/linux-unix-ftp-commands/
+#cyberciti.biz/faq/linux-unix-ftp-commands/
 
 
 Locate file:
@@ -271,6 +345,11 @@ ls | grep -v 'file-to-keep' | xargs rm
 
 
 Git:
+# which commits affected file: several possibilities
+git log --pretty=oneline --branches -- <file>
+git log --follow <file> # somethimes doesnt work for some reason
+# which files did commit affect:
+git show --pretty="format:" --name-status <commid_id>
 # remove branch:
 git branch -d branchname
 # branch from commit:
@@ -349,6 +428,15 @@ git log -S'string'
 # ---
 # list remote git branches by most recently committed to
 for branch in `git branch -r | grep -v HEAD`;do echo -e `git show --format="%ci %cr" $branch | head -n 1` \\t$branch; done | sort -r
+# ---
+# get motherfuckin bitbucket to stop asking username etc
+# 1) make sure you have ssh key configured:
+#    top right profile icon > 
+#    othw:
+# 2) make sure your repo is linked via ssh:
+#    othw:
+# 3) make local master branch track remote master branch:
+# got to your repository
 
 
 
@@ -545,6 +633,8 @@ Create archive:
 tar -cvf name.tar /path/to/directory
 # from files
 tar -cvf name.tar /path/to/file1 /path/to/file2 /path/to/file3
+# 
+zip -r zipfile.zip directory
 
 
 Emacs:
@@ -552,6 +642,11 @@ Emacs:
 C-x C-f /ssh:username@hostname:
 # piped ssh
 /ssh:root@78.129.148.77:/data/ad6813/caffe/RUN.md
+# sdL!1s2zsn
+/ssh:adaylac@roitgrund.me:/var/www/machinas/index.html
+# protip
+# roitgrund.me/rutorrent/torrent_downloads
+# post kabir
 /ssh:ad6813@shell1.doc.ic.ac.uk|ssh:graphic07.doc.ic.ac.uk:/data/ad6813/caffe/RUN.md
 /ssh:adaylac@roitgrund.me:/var/www/machinas/index.html
 
@@ -787,7 +882,7 @@ free -m
 
 Whats my internet speed:
 wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip
-#will download a 10MB file to dustbin then print avg download speed
+# will download a 10MB file to dustbin then print avg download speed
 
 
 PPA installation:
@@ -971,6 +1066,8 @@ Emacs commands:
 C-r
 # replace string
 M-x replace-string
+# new line:
+C-q C-j # quoted insert, newline
 # indent region
 C-c >
 C-c <

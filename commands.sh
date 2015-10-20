@@ -1,14 +1,4 @@
 
-perspective, oxford
-sentient.io - grid, huge
--> get them to vet ie check on us
-
-# EF internet sign ins
-efc@1	PJG3KI5T
-efc@2	PKJX9WCY
-efc@3	87JWL5AV
-efc@4	EHXD7LLZ
-
 # eduroam login
 ad6813@imperial.ac.uk
 9northerncighT!
@@ -156,6 +146,13 @@ done
 echo 'task goes here' | cat - todo.txt > temp && mv temp todo.txt
 # interpret syntax: cf comment bit.ly/1wOhEqR 
     
+
+# EF internet sign ins
+efc@1	PJG3KI5T
+efc@2	PKJX9WCY
+efc@3	87JWL5AV
+efc@4	EHXD7LLZ
+
 
 Bash:
 # ---
@@ -354,7 +351,7 @@ git show --pretty="format:" --name-status <commid_id>
 git branch -d branchname
 # branch from commit:
 git branch branch_name commit_id
-# merge bra into master:
+# merge branch into master:
 git checkout master
 git merge bra master
 # switch from https to ssh:
@@ -563,6 +560,31 @@ command >> output.txt 2>&1
 only stdout:
 command > out.txt
 
+
+Install on mac:
+# eg http://iterm.sourceforge.net/downloads.shtml
+
+
+Add user unix:
+# http://bit.ly/1QNGvDG
+# for tractable applicants:
+useradd -G guests -m alan -s /bin/bash -e 2015-11-25
+passwd alan 
+cp ~/alex/caffe ~/alan
+find ../val/ -type d | xargs -i chmod ugo+rwx {}
+find ../val/ -type f | xargs -i chmod ugo+rw {}
+# guests group created by raz for applicants
+# alan is name of user
+# bash is default shell when alan ssh-es
+# ---
+# to list user groups
+cat /etc/group
+# if I create a file then the 2nd category in chmod for that file applies to
+# all users in all groups that I'm part of
+# ---
+# to delete user
+userdel -r alan
+# -r delete user's home directory too
 
 Makefile:
 # tutorial: bit.ly/1lWm4Dh

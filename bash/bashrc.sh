@@ -112,19 +112,13 @@ alias mendeley="/usr/bin/mendeleydesktop &> /dev/null & disown"
 
 alias wink="/usr/local/lib/wink/wink"
 
-alias ssh-graphic02="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic02.doc.ic.ac.uk"
+##############
+#
+#  Nice SSH passwords, did you get pwned yet?
+#
+#
+####################
 
-alias ssh-graphic06="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic06.doc.ic.ac.uk"
-
-alias ssh-graphic07="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic07.doc.ic.ac.uk"
-
-alias ssh-graphic09="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic09.doc.ic.ac.uk"
-
-alias ssh-graphic10="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk ssh -A -t graphic10.doc.ic.ac.uk"
-
-alias ssh-icl="sshpass -p 9northerncighT! ssh -A -t ad6813@shell2.doc.ic.ac.uk"
-
-alias ssh-X-icl="sshpass -p 9northerncighT! ssh -A -t -X ad6813@shell2.doc.ic.ac.uk"
 
 alias python="ipython"
 
